@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary = [12, 23, 34, 12, 23, 34, 2];
+    Array.prototype.myUnique = function myUnique() {
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur] === cur) {
+                this[i] = this[this.length - 1];//把最后一荐放在当前项
+                this.length--;
+                i--;
+                continue;
+            }
+            obj[cur] = cur;
+        }
+        obj=null;
+        return this;
+    }
+    ary.myUnique().sort(function(a,b){
+        return a-b;
+    });
+    console.log(ary);
+
+
+    //    Array.prototype.mypop = function () {
+    //        this.length--;
+    //    }
+    //    //ary.pop();//this->ary
+    //    ary.mypop();
+    //    console.log(ary);
+    //    ary.__proto__.mypop();//this->ary.__proto__->Array.prototype
+    //    console.log(ary);
+</script>
+</body>
+</html>

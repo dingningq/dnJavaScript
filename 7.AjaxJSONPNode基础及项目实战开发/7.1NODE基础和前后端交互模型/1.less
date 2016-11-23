@@ -1,0 +1,18 @@
+@color:#fff;
+.transition(@property:all,@duration:1s,@fn:linear,@delay:0s){
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}
+.box{
+  background: @color;
+  .transition(@duration: 0.5s)
+}
+.box1{
+  .transition(@duration: 0.1s)
+}
+.box2{
+  .transition(@duration: 0.2s)
+}

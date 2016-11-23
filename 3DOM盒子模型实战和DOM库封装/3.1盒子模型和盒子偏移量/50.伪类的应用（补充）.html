@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>补充css伪类</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+        }
+
+        .box {
+            width: 300px;
+            margin: 20px auto;
+            padding: 30px;
+            border: 1px dashed green;
+        }
+
+        .box p {
+            line-height: 30px;
+        }
+        /*:before :after->在一个元素标签的前面或者后面，创建一个新的虚拟的标签，我们可以给这个虚拟的标签增加样式，也可以增加内容等。。。 */
+        .box p:before{
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            content: "丁丁丁丁";
+            background: lightblue;
+        }
+        .box p:after{
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            content: "宁宁宁宁宁";
+            background: lightgreen;
+        }
+        .clear{zoom: 1;}
+        .clear:after{
+            display: block;
+            width: 0;
+            height:0;
+            content:"";
+            overflow: hidden;
+            clear:both;
+        }
+        ul,li{list-style: none;}
+        .list{
+            width: 300px;
+            margin:20px auto;
+            border:1px solid #000;
+            padding:30px;
+
+
+        }
+        .list li{
+            width: 100px;
+            float:left;
+            height: 100px;
+
+        }
+        /*.list li:nth-of-type(odd){
+             background:lime;
+         }
+        .list li:nth-of-type(even){
+            background:lightgoldenrodyellow;
+        }*/
+        .list li:nth-of-type(4n+1){
+            background:lime;
+        }
+        .list li:nth-of-type(4n+2){
+            background:lightgoldenrodyellow;
+        }
+        .list li:nth-of-type(4n+3){
+            background:yellow;
+        }
+        .list li:nth-of-type(4n+4){
+            background:green;
+        }
+    </style>
+</head>
+<body>
+<div class="box" >
+    <P id="boxP">
+        要得到你必须要付出,要付出你还需要学会坚持,如果你真的觉得很难,那你就放弃,但是一但放弃就不要在抱怨,我觉得人生就是这样,世界真的是平衡的,每个人都是通过自己的努力,去决定自己生活的样子;
+        要得到你必须要付出,要付出你还需要学会坚持,如果你真的觉得很难,那你就放弃,但是一但放弃就不要在抱怨,我觉得人生就是这样,世界真的是平衡的,每个人都是通过自己的努力,去决定自己生活的样子;
+    </P>
+</div>
+<ul class="list clear">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li>
+    </li>
+</ul>
+<script>
+    var boxP=document.getElementById("boxP");
+    console.log(window.getComputedStyle(boxP,"before").content);
+    console.log(window.getComputedStyle(boxP,"before").height);
+</script>
+</body>
+</html>

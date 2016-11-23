@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+        我们有些时候需要检测一下当前浏览器是PC端的还是移动端的浏览器
+        ->1.如果当前的浏览器是PC端的，但是我们访问的页面是移动端的页面，我们让其跳转到PC端的页面
+        ->如果当前的浏览器是移动端的，但是我们访问的页面是PC端的页面，我们让其跳转到移动端的页面
+        跳转：window.location.href='xxxx'网站地址
+    -->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        /*REM:当前页面中元素的REM单位的样式值都是针对于HTML元素的fontSize的值进行动态计算的*/
+        html {
+            font-size: 100px; /*1REM=100px*/
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            /*position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;*/
+            margin: 0 .2rem;
+            height: 3rem;
+            /*padding:0.01rem;*/
+            background: url("img/banner1.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<section class="main" id="main">
+    <div class="box"></div>
+</section>
+
+<script charset="utf-8">
+    //->根据当前屏幕宽度和设计稿宽度的比例，动态计算一下当前宽度下的fontSize值应该是多少，如果fontSize的值改变了，之前设定的所有REM单位的值 自动会跟着放大或者缩小
+
+    ~function () {
+        var desW = 640,
+                winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+
+        //->如果当前屏幕的宽度已经大于设计稿了，为了保证图片的良好展示，我们一般都不让其在继续变大了，以设计稿的宽度为最后宽度，剩余的部分留空白显示(京东...都是这么写)
+        var oMain=document.getElementById('main');
+        if(winW>desW){
+            oMain.style.width=desW+'px';
+            oMain.style.margin='0 auto';
+            return;
+        }
+        document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }();
+
+</script>
+</body>
+</html>

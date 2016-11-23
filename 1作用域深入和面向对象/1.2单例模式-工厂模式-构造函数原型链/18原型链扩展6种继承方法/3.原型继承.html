@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    // #div1.__proto__->HTMLDivElement.prototype->HTMLElement.prototype->Element.prototype->Node.prototype->EventTarget.prototype->Object.prototype
+
+    function myObject() {
+
+    }
+    myObject.prototype = {
+        constructor: Object,
+        hasOwnProperty: function () {
+        }
+    }
+    function myEventTarget() {
+
+    }
+
+    myEventTarget.prototype = new myObject();
+    myEventTarget.prototype.addEventListener = function () {
+
+    }
+    function myNode() {
+        this.x = 100;
+    }
+    myNode.prototype = new myEventTarget();
+    myNode.prototype.createElement = function () {
+
+    };
+    var n = new myNode();
+
+    function A() {
+        this.x = 100;
+    }
+    A.prototype.getX = function () {
+        console.log(this.x);
+    };
+    function B() {
+        this.x=300;
+        this.y = 200;
+    }
+    B.prototype = new A;
+    B.prototype.constructor=B;
+
+    var b = new B;
+    var b2=new B;
+    b.__proto__.getX();
+    b.x=1000;
+    b.__proto__.x=2000
+
+
+    console.log(b.y);
+    console.log(b.x);
+    console.log(b2.__proto__.x);
+
+    //->原型继承是我们js中最常用的一种继承方式
+    //->子类B想要继承父类A中的所有的属性和方法(私有+公有的),只需要B.prototype=new A;即可
+    //原型继承的特点:它是把父类中私有的+公有的都继承到了子类原型上(子类公有的)
+
+    //->核心:原型继承并不是把父类中的属性和方法克隆一份一模一样的给B,而是让B和A之间增加了原型链的连接,以后B的实例n,想要用A中的getX方法,需要一级级的向上查找来使用
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link charset="utf-8" rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: #eee;
+
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            -webkit-transition: all 1s linear 0s;
+            transition: all 1s linear 0s;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script src="js/touch-0.2.14.min.js"></script>
+<script>
+var oBox=document.querySelector('.box');
+    touch.on(oBox,'tap',function(ev){
+        this.style.webkitTransitionDuration='1s'; //1秒转360度
+        this.style.webkitTransform='rotate(360deg)';
+        var delayTimer=window.setTimeout(function(){
+            this.style.webkitTransitionDuration='0s';
+            this.style.webkitTransform='rotate(0deg)';
+        }.bind(this),1000);
+    })
+
+touch.on(oBox,'doubletap',function(ev){
+    this.style.webkitTransitionDuration='1s'; //1秒转360度
+    this.style.webkitTransform='rotate(-360deg)';  //双击逆时针
+    var delayTimer=window.setTimeout(function(){
+        this.style.webkitTransitionDuration='0s';
+        this.style.webkitTransform='rotate(0deg)';
+    }.bind(this),1000);
+})
+touch.on(oBox,'hold swipe',function(){
+    this.style.background='red';
+})
+</script>
+</body>
+</html>

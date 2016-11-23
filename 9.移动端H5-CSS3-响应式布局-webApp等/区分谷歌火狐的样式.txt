@@ -1,0 +1,12 @@
+ /* Chrome */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+	body{background:red;}
+
+   £ý
+
+
+¡¡/* Firefox  */
+    @-moz-document url-prefix() {
+	body{background:blue;}
+£ý¡¡

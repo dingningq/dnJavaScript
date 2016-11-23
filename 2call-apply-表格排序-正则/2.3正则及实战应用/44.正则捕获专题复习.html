@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //分组捕获
+    //在正则捕获的时候,我们添加分组,不仅仅可以把大正则匹配的内容捕获,而且还可以把小分组代表的子正则匹配的内容一起捕获出来
+    //(?:xxx)分组中只匹配不捕获
+    var str = "my name is {0},my age is {1},i come from {2},i love {3}~~~";
+    var ary = ["丁宁", 30, "北京", "javascript"];
+    //{0}-->ary[0]"丁宁";
+    //{1}-->ary[1] 30
+    //...我们在捕获的时候,不仅要获取{0},而且还要获取里面的数字0,并且每一次exec执行捕获的时候,同理获取两个
+//    var reg=/{(\d+)}/g;
+//
+//        var res=reg.exec(str); //->["{0}","0"....]
+//        str=str.replace(reg,function(){
+//            return ary[arguments[1]];
+//        });
+//        console.log(str);
+
+
+    //replace字符串实现替换的一个方法
+    var str1 = "zhufengpeixun zhufengketang";
+    //str1 = str1.replace(/zhufeng/g, "珠峰");
+    //如果你想替换的话,首先你先要把"zhufeng"获取到,然后在替换->如果replace第一个参数是一个正则,那么涉及到了正则的捕获
+    /*
+     lastIndex=0
+     首先捕获"zhufeng",捕获一次,replace就执行一次替换的操作
+     lastIndex=7
+     再次捕获"zhufeng",r捕获一次,replace就执行一次替换的
+     lastIndex=21
+     捕获不到内容了,结果为null,replace就不在执行替换的操作了
+
+     */
+    //console.log(str1);
+    //如上述所说的一样,我们当前replace执行两次,相当于第二个参数function也执行两次
+    //在每一次function执行的时候,在函数中return后面返回的是啥,就把捕获的内容替换成啥
+    str1=str1.replace(/zhufeng/g,function(content,index,input){
+        console.log(arguments);
+        //arguments 当前函数的参数集合,我们发现和正则exec每一次捕获的结果很相似,这个函数默认会有三个参数
+        //content:每一次捕获的内容
+        //index:每一次捕获的开始索引
+        //input:原始字符串
+        return content.toUpperCase();
+
+    });
+    console.log(str1);
+</script>
+</body>
+</html>

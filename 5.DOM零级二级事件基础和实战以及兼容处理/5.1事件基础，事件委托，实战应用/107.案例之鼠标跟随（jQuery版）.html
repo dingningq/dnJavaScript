@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        .box {
+            width: 450px;
+            margin: 200px auto;
+            position: relative;
+        }
+
+        .box img {
+            float: left;
+            margin-left: 10px;
+            width: 100px;
+            height: 75px;
+            border: 1px solid #008B8B;
+        }
+
+        #mark {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #006600;
+        }
+
+        #mark img {
+
+            float: inherit;
+            border: none;
+            margin-left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/apple_1.jpg" alt="" bigImg="img/apple_1_bigger.jpg"/>
+    <img src="img/apple_2.jpg" alt="" bigImg="img/apple_2_bigger.jpg"/>
+    <img src="img/apple_3.jpg" alt="" bigImg="img/apple_3_bigger.jpg"/>
+    <img src="img/apple_4.jpg" alt="" bigImg="img/apple_4_bigger.jpg"/>
+
+    <div id="mark">
+        <img src="img/apple_1_bigger.jpg" alt=""/>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    //->等价于$(document).ready()
+    //->当页面上的HTML结构都加载完成在执行对应的函数
+    $(function () {
+        var $box = $("#box");
+        var $mark = $("#mark");
+        var $boxOffset = $box.offset();//获取当前元素距离body的上偏移和左偏移
+        $box.children("img").on("mouseover",function(e){
+            e=e||window.event;
+            e.target= e.target|| e.srcElement;
+            var left= e.clientX-$boxOffset.left+10;
+            var top= e.clientY-$boxOffset.top+10;
+            $mark.stop().show(500).css({left:left,top:top}).find("img").attr("src", e.target.getAttribute("bigImg")); //hide,toggle,slideDown,slideUp,slideToggle, fadeIn,fadeOut,fadeToggle,animate...
+
+        }).on("mousemove",function(e){
+            e=e||window.event;
+            var left= e.clientX-$boxOffset.left+10;
+            var top= e.clientY-$boxOffset.top+10;
+            $mark.css({left:left,top:top});
+        }).on("mouseout",function(e){
+                    $mark.stop().hide(500);
+                });
+    });
+</script>
+</body>
+</html>

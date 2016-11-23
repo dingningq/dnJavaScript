@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //->冒充对象继承:把父类私有的+公有的克隆一模一样的给子类私有的
+    function A(){
+        this.x=100;
+    }
+    A.prototype.getX=function(){
+        console.log(this.x);
+    };
+    function B(){
+        this.x=200; //这里的x属性名已经被继承父类的X属性名所覆盖
+        this.y=200;
+        //this->n
+        var temp=new A;
+        for(var key in temp){
+            this[key]=temp[key];
+        }
+        temp=null;
+    }
+    var n=new B;
+    for(var key in n){
+      console.log(key+"值是"+n[key]);
+    }
+    n.getX();
+
+</script>
+</body>
+</html>

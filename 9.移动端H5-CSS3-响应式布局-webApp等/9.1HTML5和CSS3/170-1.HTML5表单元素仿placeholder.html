@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;}
+        html,body{font-size: 14px;font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            width: 100%; overflow: hidden;color:#000;}
+        input{outline: none;display: inline-block;}
+        .box{
+            width: 200px;
+            position: relative;}
+        .box input,.box .tip{padding:0 5px;
+            width: 188px;
+            height: 30px; line-height: 30px; border: 1px solid #ccc;}
+        .box .tip{
+            display: none;
+            position: absolute;
+            left: 0;
+            top:0;
+            color:#ccc;
+            cursor: text;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <!--"-->
+    <input type="email" id="userEmail" placeholder="请输入邮箱" />
+
+    <span class="tip" id="tipEmail">请输入邮箱</span>
+</div>
+<script>
+    if(navigator.userAgent.indexOf('MSIE')>-1){
+        var userEmail=document.getElementById("userEmail"),
+                tipEmail=document.getElementById("tipEmail");
+        userEmail.placeholder="";
+        tipEmail.style.display="block";
+        tipEmail.onclick=function(){
+            userEmail.focus();
+        }
+        userEmail.onkeydown=userEmail.onkeyup=userEmail.onfocus=function(){
+            tipEmail.style.display=this.value.length===0?"block":"none";
+        }
+    }
+
+</script>
+
+</body>
+</html>

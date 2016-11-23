@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery轮播图（渐隐渐现）</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+<div class="banner" id="bannerFir">
+    <div class="bannerInner">
+        <!--<div><img src="" trueImg="img/banner1.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner2.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner3.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner4.jpg"/></div>-->
+    </div>
+    <ul class="bannerTip">
+        <!--<li class="bg"></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+    </ul>
+    <a href="javascript:;" class="banLeft"></a>
+    <a href="javascript:;" class="banRight"></a>
+</div>
+<div class="banner" id="bannerTwo">
+    <div class="bannerInner">
+        <!--<div><img src="" trueImg="img/banner1.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner2.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner3.jpg"/></div>-->
+        <!--<div><img src="" trueImg="img/banner4.jpg"/></div>-->
+    </div>
+    <ul class="bannerTip">
+        <!--<li class="bg"></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+        <!--<li></li>-->
+    </ul>
+    <a href="javascript:;" class="banLeft"></a>
+    <a href="javascript:;" class="banRight"></a>
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/banner.js"></script>
+<script>
+    $("#bannerFir").banner("json/banner.txt",1000);
+    $("#bannerTwo").banner("json/banner.txt",2000);
+</script>
+</body>
+</html>

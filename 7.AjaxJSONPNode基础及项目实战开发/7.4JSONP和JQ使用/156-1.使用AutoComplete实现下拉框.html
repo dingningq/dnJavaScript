@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+            font-size: 62.5%;
+        }
+        .ui-widget-content
+
+    </style>
+    <script>
+        $(function() {
+            var $searInp=$(tags);
+            function log( message ) {
+                $( "<div>" ).text( message ).prependTo( "#log" );
+                $( "#log" ).scrollTop( 0 );
+            }
+            $( "#tags" ).autocomplete({
+                source: function( request, response ) {
+                    var searKey=$searInp.val();
+                $.ajax( {
+                    url: "http://suggestion.baidu.com/su?wd="+searKey+"&_=" + Math.random(),
+                    dataType: "jsonp",
+                    jsonp:"cb",
+                    data: {
+                        term: request.term
+                    },
+                    success: function( data ) {
+
+                        response( data["s"] );
+                    }
+                } );
+            },
+                select: function( event, ui ) {
+                    log( "Selected: " + ui.item.value + " aka " + ui.item.label );
+                }
+            });
+
+
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+<div class="ui-widget">
+    <label for="tags">标签：</label>
+    <input id="tags">
+</div>
+<div class="ui-widget" style="margin-top:2em; font-family:Arial">
+    Result:
+    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+</body>
+</html>

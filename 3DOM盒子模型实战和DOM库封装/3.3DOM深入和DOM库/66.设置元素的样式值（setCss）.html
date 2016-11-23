@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            /*position: absolute;
+            top: 0;
+            left: 0;*/
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+<script src="js/utils-duoxing.js"></script>
+<script>
+    var box = document.getElementById("box");
+    var curLeft = utils.getCss(box, "left");
+
+    //->在JS中给元素设置样式属性值，我们只能通过 curEle.style[attr]=value这种方式给当前元素设置行内样式
+    //box.style.left=100+"px";
+    //box.style.width=200+"px";
+
+
+    //->setCss:给当前元素的某一个样式属性设置值(增加在行内样式上的)
+
+    /*function setCss(curEle, attr, value) {
+        //->在JS中设置float样式值的话也需要处理兼容
+        if(attr==="float"){
+            curEle["style"]["cssFloat"] = value;
+            curEle["style"]["styleFloat"] = value;
+            return;
+        }
+
+        //->如果打算设置的是元素的透明度，我们需要设置两套样式来兼容所有浏览器
+        if (attr === "opacity") {
+            curEle["style"]["opacity"] = value;
+            curEle["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
+            return;
+        }
+//->对于某些样式属性，如果传递进来的值没有加单位，我们需要把单位默认的补充上，这样的话，这个方法就会人性化一些
+        var reg = /^(width|height|top|bottom|left|right|((margin|padding)(Top|Bottom|Left|Right)?))$/;
+        if (reg.test(attr)) {
+            if (!isNaN(value)) { //->在判断传递进来的value值是否是一个有效数字，如果是有效数字的话，证明当前传递进来的值没有加单位，我们给补充单位
+                value += "px";
+            }
+        }
+
+        curEle["style"][attr] = value;
+    }*/
+    utils.setCss(box, "width", 200);
+    utils.setCss(box, "backgroundColor", "red");
+    utils.setCss(box, "opacity", 0.5);
+    utils.setCss(box, "float", "right");
+    utils.setCss(box, "borderTop", "10px solid #000");
+    utils.setCss(box, "margin", "10px 20px 30px 40px");
+</script>
+</body>
+</html>

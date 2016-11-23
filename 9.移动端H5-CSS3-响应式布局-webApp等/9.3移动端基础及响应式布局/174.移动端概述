@@ -1,0 +1,110 @@
+移动端，H5，响应式布局，webApp,场景应用，微信二次开发... 都指的是同一个东西 h5页面
+
+
+移动端：运行在移动设备上的产品
+移动设备：手机，平板，I TOUCH。。
+我们以后做的产品大部分都只需要适配IOS系统和安卓系统即可
+
+响应式布局： 在不同的设备上都能给予客户最好的操作体验
+
+产品：
+APP：
+    手机应用，目前市面上流行的APP产品大部分都是原生APP开发者做的 IOS：OBJECT-C; 安卓：JAVA-NATIVE
+    目前市场上正在趋于使用JS来开发原生的APP：React Native,phoneGap...
+H5:
+    HTML页面，都是运行在浏览器中的（PC端浏览器或者移动端的浏览器-》在IOS和安卓平台上的浏览器大部分都是webkit内核的，所以移动端我们做的H5页面不用像PC端一样那样的去处理浏览器的兼容）
+
+
+以后工作中我们这一类前端开发工程师主要做的产品形态都有哪些：
+->PC和移动端公用一套布局：做一个HTML页面，既需要在PC端访问，也需要在移动端访问，比如：猎豹，华为。。(响应式)
+
+->PC端和移动端用的是不同的项目，例如：京东，淘宝，QQ....，PC端的项目不需要做响应式，移动端的项目需要做响应式
+
+->在移动端我们开发出来的HTML页面（H5）运行的环境：
+  移动端的浏览器：UC,QQ,百度...
+  原生APP(Native App)的webView中：hyBrid模式  例如：在微信中打开一个H5页面，我们的H5其实就是运行在微信的webView中的
+
+  hyBrid模式：http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/511.html
+  ->把我们开发的H5页面嵌入到Native APP的webView中运行（所谓的webView你可以简单的理解为一个浏览器，也是webKit内核的）
+
+
+
+  第二部分：响应式布局
+  ->搭建一个H5页面，我们需要在HEAD中添加一个META标签（wb中输入meta:vp按下TAB键自动生成）
+   <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    JS动态设置vp:
+    var oMeta=document.createElement('meta');
+    oMeta.name='viewport';
+    oMeta.content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0';
+    document.head.appendChild(oMeta);
+
+
+   viewport:视口
+   width=device-width 设置视口的宽度等于设备的宽度，如果不设置的话，默认视口的宽度是980px ->通俗理解：我们这个操作其实就是告诉当前的浏览器按照多少宽度来渲染页面，换句话说就是展示当前这个页面的区域一共有多宽(浏览器的宽度)
+
+   user-scalable=no：禁止用户手动缩放
+
+   initial-scale=1.0 设置屏幕最大，最小，默认的绽放比例
+   maximum-scale=1.0
+   minimum-scale=1.0
+
+   ->高清屏
+    苹果手机是2倍高清屏幕的，也就是我们在手机上看到的那张100*100图片，其实苹果手机是按照200*200的尺寸给我们进行渲染的，这样的话，如果我们真实图片本身才100*100，最后呈现出来的就是被拉伸后变模糊的效果
+    ->苹果手机上需要的素材图片都需要比看到的尺寸大一倍才可以
+
+    DPI适配思想：我们在做页面的时候，最好每一张素材图片都准备两套或者三套，比如
+    logo.png 100*100
+    logo@2x.png 200*200
+    logo@3x.png 300*300
+    ...
+
+    媒体查询：@media
+    ->媒体设备：all所有设备 screen所有屏幕设备 pc+移动端 print打印机设备。。。
+    ->媒体条件：指定在什么样的条件下执行对应的样式
+     .logo {
+                width: 100%;
+                height: 500px;
+                background: blue;
+
+            }
+            @media screen and (min-width:321px)and (max-width:480px){
+                .logo {
+                    width: 100%;
+                    height: 100px;
+                    background: red;
+                }
+            }
+            @media screen and (max-width:320px){
+                .logo{
+                    width:100%;
+                    background: yellow;
+                    height:300px;
+                }
+            }
+
+
+   苹果手机的尺寸：5s及以下都是320px 6是375px宽度 6plus是414px宽度
+   常用的安卓机尺寸：320,360,480,540,640,720...
+
+   在真实项目中，设计师给我们的设计稿一般都是 640*960/640*1136（高度不一定）/750*1334
+
+   ->响应式布局的解决方案：
+    1）流式布局法
+        ->容器或者盒子的宽度一般都不写固定的值，而是使用百分比(相对于视口区域的百分比)
+        ->其余的样式：字体，高度，MARGIN,PADDING等等都按照设计稿上标注尺寸的一半来设置
+        ->对于有些屏幕尺寸下，我们设置的固定值看起来不是特别的好看的话，使用@media进行微调整
+
+    特殊情况：设计师的设计稿是640px，我们的素材图也是640px的，这样的话在iphone6/iphone6 plus展示的时候，图片不够大，对于这种情况我们需要单独的找设计师要一张更大的图，在腾讯的时候一般我要的大图都是1280的
+    @media all and (-webkit-min-device-pixel-ratio:2) and (min-width:321px){
+        .box{
+            background:url('banner@big.png')...
+        }
+    }
+
+    @media all and (min-width:641px){
+         .box{
+            background:url('banner@big.png')...
+         }
+    }

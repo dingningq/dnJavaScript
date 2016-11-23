@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary = [34, 23, 12, 35, 14, 55, 47];
+
+    //1,由小到大排序,第一个和最后一个就是最小值和最大值
+    //    ary.sort(function (a, b) {
+    //        return a - b
+    //    });
+    //    var min = ary[0];
+    //    var max = ary[ary.length - 1];
+    //    console.log(min, max);
+
+
+    //2,假设法:假设当前数组中的第一个值是最大值,然后拿这个值和后面值逐一进行比较,如果后面某一个值比假设的还要大,说明假设错了,我们把假设的值进行替换...
+    //->和自定义属性一样,都是js中最常用的编程思想
+    //    var max=min=ary[0];
+    //    for(var i=0;i<ary.length;i++){
+    //        var cur=ary[i];
+    //        cur<min?min=cur:null;
+    //        cur>max?max=cur:null;
+    //    }
+    //    console.log(min,max);
+
+
+    //3.使用Math中的max/min方法实现
+    //第一次尝试
+    //   var str=eval(ary.toString());  //这里稍后在做 没做出来???????   ->只取到了最后一项的值
+    //    console.log(str);
+    //var min = Math.min(str);//它是在执行的时候,把需要比较的那堆数一个个的传递进来,这样才可以得到最后的结果,一下放一个ary数组进来是不可以的
+
+
+    //eval:把一个字符串变为js表达式执行
+    //例如:
+    //eval("12+23")->35
+
+    //第二次尝试
+//    var max = eval("Math.max(" + ary.toString() + ")");
+//    var min = eval("Math.min(" + ary.toString() + ")");
+//    console.log(min, max);
+
+
+    //4.用apply和call
+        var max=Math.max.apply(null,ary);
+        var min=Math.min.apply(null,ary);
+        console.log(min,max);
+
+
+    //======================================================
+
+    //->括号表达式
+    function fn1() {
+        console.log(this)
+    };
+    function fn2() {
+        console.log(this)
+    };
+    var obj = {name: "丁宁", fn: fn2};
+
+    // (fn1, fn2)(); //->2 ->只有fn2执行了->(x1,x2,x3...)括号表达式,一个括号中出现多项内容,中间用","隔开,但是我们最后获取到的结果只有最后一项
+    //(fn2,obj.fn)(); //->执行的是obj.fn,但是执行的时候里面的this变为了window而不是obj, 相当于把obj.fn的这个函数值给拿出来放这了!!!
+    //(obj.fn)(); //如果就一项的话, this就是obj
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<root>
+    <person>
+        <name>丁宁</name>
+        <age>20</age>
+    </person>
+    <person>
+        <name>郑宝</name>
+        <age>2</age>
+    </person>
+</root>

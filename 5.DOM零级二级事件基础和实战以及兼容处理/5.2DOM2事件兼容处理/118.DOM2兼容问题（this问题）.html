@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: #ff6600;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+<script src="js/event.js"></script>
+<script>
+    var box = document.getElementById("box");
+    var n=0;
+    function fn1() {
+        n++;
+        if(n>=3){
+            unbind(box,"click",fn1);
+            return;
+        }
+        console.dir(1);
+    }
+    function fn2() {
+        console.dir(2);
+    }
+
+    //box.attachEvent("onclick",fn1.call(box));//->在给box绑定事件的时候，首先执行fn1方法，让方法中的this变为box,然后把fn1执行的返回结果绑定给onclick->现在fn1执行完传过来的是undefined
+
+    //    box.attachEvent("onclick",function(){
+    //        fn1.call(box);
+    //    });
+    //->这样虽然解决了this的问题，但是又抛出了一个新的问题，不知道该如何删除了（我们不知道匿名函数是谁）
+
+    //    var tempFn=function(){
+    //        fn1.call(box);
+    //    }
+    //    box.attachEvent("onclick",tempFn);
+    //    box.detachEvent("onclick",tempFn);
+
+
+    bind(box,"click",fn1);
+    bind(box,"click",fn1);
+    bind(box,"click",fn1);
+    bind(box,"click",fn2);
+    unbind(box,"click",fn1);
+</script>
+</body>
+</html>

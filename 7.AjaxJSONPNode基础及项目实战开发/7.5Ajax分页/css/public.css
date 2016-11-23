@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+html, body {
+    width: 100%;
+    color: #000;
+    font-size: 14px;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+}
+
+/*--index--*/
+.box {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid green;
+    text-align: center;
+}
+
+.box h2 {
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    background: green;
+    color: #fff;
+
+}
+
+.box h2 span, .content li span {
+    float: left;
+    width: 200px;
+    height: 100%;
+    text-align: center;
+}
+
+.content {
+    height: 300px;
+}
+
+.content li {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.content li:nth-child(even) {
+    background: #eee;
+}
+
+.content li:hover {
+    background: #e0f2be;
+}
+
+.page {
+    display: inline-block;
+    margin-top: 10px;
+    height: 22px;
+    line-height: 22px;
+}
+
+.page span, .page ul, .page input, .page li {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 3px;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+.page span, .page input {
+    width: 45px;
+
+}
+
+.page ul {
+    border: none;
+}
+
+.page li {
+    width: 20px;
+}
+
+.page li.bg {
+    background: green;
+    color: #fff;
+}
+
+/*--detail--*/
+.box2 {
+    width: 200px;
+    border: 2px solid green;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+}
+
+.box2 li {
+    height: 50px;
+    line-height: 50px;
+}
+
+.box2 li:nth-child(even) {
+    background: #eee;
+}
+
+.box2 li span {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}

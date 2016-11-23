@@ -1,0 +1,45 @@
+
+使用Github发布项目
+->GitHub:
+    https://github.com/一个网站，网站搭建了一个供用户管理代码的平台（而且是基于Git操作进行管理的一个平台）
+    GitHub在全世界都是比较权威的，我们前端开发工程师所需要的框架，类库，插件的源代码基本上都在GitHub上有托管
+
+    建议：初期回去后先把自己所了解的关于框架，类库，插件的源代码在GitHub上找到，然后fork到自己的仓库一份，以后有时间尽量去研究一下源代码;后期当自己有一定能力的时候，写一些插件或者类库，上传到Github上供别人研究使用，培养自己的粉丝。。。
+
+    GitHub还有一个作用：可以在这个平台上发布前端的项目文件 (GitHub本身就是一个资源文件托管的平台，我们把项目资源文件上传到这个平台下，平台帮我们发布，以后只需输入对应的网址就可以把这个平台中托管文件的源代码返回到用户的客户端进行渲染)
+
+->使用GitHub
+    建议：注册一个GitHub账号（用户名是自己的中文全拼),注意在GitHub中注册一个账号，只有验证邮箱后续创建仓库托管文件 才可以操作
+
+    GitHub中的一个账号可以创建多个仓库，每一个仓库一般只存储和管理一个项目
+    README.MD文件是对仓库的说明，里面的内容采用MARK语法进行编写
+
+    通过$ git clone xxx.git把远程仓库中的文件下载到本地，此时本地的这个文件夹就和我们的远程仓库保持了连接，我们可以通过连接本地的文件推送到远程仓库上，也可以从远程仓库上下载最新的文件等
+    git教程：http://www.zhufengpeixun.cn/course/20
+
+ ->使用GitHub发布项目，创建自己的静态博客：
+ 1.创建一个新的仓库（新仓库默认只有一个主分支master,我们如果要托管的是源代码的话，都是把源代码上传到master这个分支下-> $ git push origin master）
+
+ 2.基于当前的仓库发布我们的博客
+ setting->Options->GitHub Pages->Launch Automatic page generator（按钮）->Continue to Layouts->Publish Page(在这一步我们可以选择一个我们中意的模板，也可以不用管，我们可以后期上传自己的项目来展示)
+
+ 提示了一句话Your project page has been created at http://dingningq.github.io/dn_swiper/. Read more at https://help.github.com/pages.
+ https://dingningq.github.io/dn_swiper/就是我们生成的博客访问地址
+ 以后我们可以通过 https://github.com/用户名/仓库名/看到别人的源代码
+
+ GitHub默认为当前的仓库创建了一个gh-pages这个分支，GitHub默认生成的项目的源代码都在gh-pages这个分支下(也就是，以后想管理发布项目的文件或者内容都需要在gh-pages这个分支下进行管理)
+
+ 3.为了方便后期的管理，我们使用把仓库的默认分支 切换为gh-pages
+ Settings->Branches->Default-branch->gh-pages-update
+
+ 4.把自己的项目资源文件上传到gh-pages分支下，替换默认生成的文件
+
+ ->$git clone https://github.com/dingningq/dn_swiper.git 把远程仓库中的项目文件 克隆到本地（把除了.git文件以外的其它文件都删了）
+ ->把自己需要展示上传的文件 copy到项目中
+ ->$ git add
+  $ git commit -m'备注信息'
+  $ git push origin gh-pages 传到的是gh-pages
+
+ 这样以后就可以把地址告诉给别人了  https://dingningq.github.io/dn_swiper/
+
+ 5.锦上添花：把地址生成一个二维码，让别人扫码访问

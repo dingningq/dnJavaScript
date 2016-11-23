@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #box {
+            margin: 100px;
+            padding: 30px;
+            width: 200px;
+            height: 200px;
+            border: 10px solid green;
+            line-height: 30px;
+            font-size: 14px;
+            overflow:auto;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box" class="box1 box2 box3 box4" name="test" index="0">
+    要得到你必须要付出,要付出你还需要学会坚持,如果你真的觉得很难,那你就放弃,但是一但放弃就不要在抱怨,我觉得人生就是这样,世界真的是平衡的,每个人都是通过自己的努力,去决定自己生活的样子;
+    要得到你必须要付出,要付出你还需要学会坚持,如果你真的觉得很难,那你就放弃,但是一但放弃就不要在抱怨,我觉得人生就是这样,世界真的是平衡的,每个人都是通过自己的努力,去决定自己生活的样子;
+</div>
+<script>
+    var box=document.getElementById("box");
+    //->1.之前我们学习的JS盒子模型中client系列/offset系列/scrollWidth/scrollHeight都是“只读”属性
+
+    //->2.scrollTop/scrollLeft:滚动条卷去的高度/宽度（这两个属性是唯一"可读写"属性）
+    //box.scrollTop=0;//->直接回到了容器的顶部
+    //->我们的scrollTop是值是存在边界值（最大和最小值的）,我们设置的值比最小值小或者比最大值大都没用，起到效果的依然是边界值
+    //box.scrollTop=-1000;//->直接回到了窗器的顶部，没有超出
+   // console.log(box.scrollTop);//->0
+
+    //[最大值是=真实的高度-当前窗器一屏幕的高度]
+    //var maxTop=box.scrollHeight-box.clientHeight;
+    //console.log(maxTop);
+
+    //3.
+
+
+</script>
+</body>
+</html>

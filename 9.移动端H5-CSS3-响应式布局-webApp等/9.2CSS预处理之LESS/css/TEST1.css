@@ -1,0 +1,43 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.box {
+  /*
+    需要知道盒子具体的宽度和高度，只有这样才能计算出对应的margin值（兼容所有的浏览器）
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -100px;
+  */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  color: #ffff00;
+  width: 200px;
+  height: 200px;
+  background: blue;
+  border: 1px solid #ffff00;
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+}
+.box:hover {
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+  background: #ad94ff;
+}

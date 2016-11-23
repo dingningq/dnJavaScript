@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    //如果查找当前作用域的上一级作用域?
+    //看当前函数是在哪个作用域下定义的,那么它的上级作用域就是谁->和函数在哪执行的没有任何关系
+    var num=12;
+    function fn(){
+        var num=120;
+        return function(){
+            console.log(num);
+        }
+    }
+
+    var f=fn();
+    f();
+
+    ~function(){
+        var num=1200;
+        f();  //这里的num还是120 跟在哪里执行没关系,找函数在哪个作用域下定义的
+    }()
+</script>
+</body>
+</html>

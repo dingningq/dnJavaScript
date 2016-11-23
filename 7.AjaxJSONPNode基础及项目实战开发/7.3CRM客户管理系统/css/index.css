@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #2e2e2e;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a, a:hover, a:active, a:visited, a:target {
+    text-decoration: none;
+    color: #2e2e2e;
+}
+
+input {
+    display: inline-block;
+    outline: none;
+}
+
+.w50 {
+    width: 50px;
+}
+
+.w150 {
+    width: 150px;
+}
+
+.w200 {
+    width: 200px;
+}
+
+/*首页面*/
+.box {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid green;
+}
+
+.link {
+    display: block;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.link:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+.head {
+    height: 35px;
+    line-height: 35px;
+    background: green;
+}
+
+.head span, .list li span {
+    float: left;
+    font-size: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.head span {
+    font-weight: bold;
+    color: #fff;
+}
+
+.list li {
+    height: 35px;
+    line-height: 35px;
+}
+
+/*css3新增加的选择器 nth-child(even)获取所有的偶数行*/
+.list li:nth-child(even) {
+    background: #eee;
+}
+
+.list li:hover {
+    background: #ffeeaa;
+}
+
+.control a {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/*add页面*/
+.add {
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid green;
+}
+
+.add div {
+    height: 32px;
+    line-height: 32px;
+    margin: 10px auto;
+}
+
+.add div span {
+    display: inline-block;
+    width: 50px;
+}
+
+.add div input {
+    padding: 0 10px;
+    width: 380px;
+    height: 30px;
+    border: 1px solid #ddd;
+}
+
+#userName, #userAge {
+    width: 190px;
+}
+
+.add div.submit {
+    width: 200px;
+    margin: 20px auto;
+    background: green;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,0 +1,256 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+a {
+    color: #000;
+}
+
+a:hover, a:active {
+    color: #000;
+}
+
+.con {
+    margin: 0 auto;
+    width: 960px;
+}
+
+/*--header区域--*/
+.header, .headerBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 89px;
+    overflow: hidden;
+}
+
+.header {
+    box-shadow: 0 1px 2px 0 #bbb;
+}
+
+.headerBg {
+    background: #000;
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    z-index: 9;
+}
+
+.header .logo {
+    float: left;
+    width: 270px;
+    height: 51px;
+    margin-top: 19px;
+    font-size: 0;
+}
+
+.header .logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.header .nav {
+    float: right;
+}
+
+.header .nav li {
+    float: left;
+    position: relative;
+
+}
+
+.header .nav li a {
+    display: block;
+    padding: 0 30px;
+    height: 89px;
+    line-height: 89px;
+    color: #f4f4f4;
+    font-size: 18px;
+}
+
+.header .nav li.bg a {
+    color: #fff;
+}
+
+.header .nav li a i {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+    margin-left: 0; /* -50%*/
+    width: 0; /*100%*/
+    height: 100%;
+    background: #000;
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+
+}
+
+.header .nav li a:hover i {
+    /*过渡动画:PC端使用写五条，移动端使用只留第一个和最后一个，而且顺序不能变*/
+    -webkit-transition: all .2s linear 0s;
+    -moz-transition: all .2s linear 0s;
+    -ms-transition: all .2s linear 0s;
+    -o-transition: all .2s linear 0s;
+    transition: all .2s linear 0s;
+
+    margin-left: -50%;
+    width: 100%
+}
+
+/*--BANNER--*/
+.banner {
+    height: 580px;
+    position: relative;;
+}
+
+.prev, .next {
+    display: block;
+    position: absolute;
+    top: 267px;
+    z-index: 333;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+.prev:hover, .next:hover{
+    opacity: 1;
+    filter(alpha(opacity=100));
+}
+
+.prev {
+    left: 70px;
+}
+
+.next {
+    right: 70px;
+}
+
+.banner-box, .slide {
+    display: block;
+    width: 100%;
+    height: 580px;
+    overflow: hidden;
+}
+
+.banner-box {
+    position: relative;
+}
+
+.slide {
+    position: relative;
+    height: 490px;
+    padding-top: 90px;
+    display: none;
+}
+.banAnimate{
+    display: block;}
+
+#bgOrange {
+    background: #ff6900;
+}
+
+#bgBlue {
+    background: #193d85;
+}
+
+.ban-a, .ban-b, .ban-c, .ban-d {
+    position: absolute;
+    left: 50%;
+    z-index: 9;
+}
+
+.ban-a, .ban-b {
+    width: 952px;
+    margin-left: -476px;
+    text-align: center;
+}
+
+.ban-a {
+    height: 352px;
+    top: 101px;
+}
+
+.ban-b {
+    height: 100px;
+    top: 406px;
+}
+
+.ban-c {
+    height: 582px;
+    top: 0;
+    margin-left: -540px;
+}
+
+.ban-d {
+    height: 164px;
+    top: 228px;
+}
+
+.item {
+    display: block;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    z-index: 130;
+    left: 0;
+    top: 550px;
+    text-align: center;
+}
+
+.item a {
+    display: inline-block;
+    width: 24px;
+    height: 10px;
+    margin-right: 10px;
+    background: #444;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+.item a.cur{background: #fff;}
+
+/*响应式*/
+@media all and (max-width: 760px) {
+    .con {
+        width: 100%;
+    }
+
+    .header, .headerBg {
+        height: 46px;
+    }
+
+    .header .logo {
+        height: 28px;
+        width: 148px;
+        margin-top: 9px;
+        margin-left: 10px;
+    }
+
+    .header .nav {
+        display: none;
+    }
+}
+
+
+/*动画效果*/
+.banAnimate .lbbus-btn {
+    display: block;
+    animation-name: busbtnas;
+    -webkit-animation: busbtnas 0.6s linear 0s normal none;
+    -moz-animation: busbtnas 0.6s linear 0s normal none;
+    animation: busbtnas 0.6s linear 0s normal none;
+}
+@-webkit-keyframes busbtnas {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript">
+    var   v   =callback({
+        "object_name": "OPC_DATA",
+        "end_time": "1473094801000",
+        "jsonpCallback": "callback",
+        "max_num": "100",
+        "filter_mode": "1",
+        "return_time_format": "1",
+        "start_time": "1473008401000",
+        "query_json_keys": [
+            {
+                "TAGNAME": "TY_CL_DM.XZGJG_TDM5.SW_ET116_5_EH",
+                "FIELD": "LA"
+            },
+            {
+                "TAGNAME": "TY_BGQ_DM.ZP_TDM16.SW_DL9104_EH",
+                "FIELD": "LB"
+            }
+        ],
+        "query_time_format": "1",
+        "period_data": {
+            "total": 131,
+            "rows": [
+                {
+                    "TIME": "1",
+                    "LA": "458.88"
+                },
+                {
+                    "TIME": "1",
+                    "LA": "46.2"
+                }
+
+            ]
+        }
+    })
+
+console.log(v.period_data.row[0]);
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //forEach:用来遍历数组中的每一项
+    //1)数组中有几项，那么我们传递进去的匿名回调函数就需要执行几次
+    //2)每一次执行匿名函数的时候，还给其传递了三个参数值：数组中的当前项item,当前项索引index，原始的数组input
+    //3)理论上我们的方法是没有返回值的，仅仅是遍历数组中的每一项，不对原来的数组进行修改，但是我们可以自己通过数组的索引来修改原来的数组
+    //    var ary=[12,23,34,45,56];
+    //    var res=ary.forEach(function(item,index,input){
+    //        input[index]=item*10;
+    //        //console.log(item);
+    //    })
+    //    console.log(res);//->undefined
+    //    console.log(ary);//->会对原来的数组产生改变
+
+
+    //map:和forEach非常的相似，都是用来遍历数组中的每一项值的
+    //1)map的回调函数中支持return返回值，return的是啥，相当于把数组中的这一项变为啥(但是并不影响原来的数组，只是相当于把原数组克隆的这一份的数组中的对应项改变了)
+    //        var ary=[12,23,34,45,56];
+    //        var res=ary.map(function(item,index,input){
+    //            return item*10;
+    //        })
+    //        console.log(ary);
+    //    console.log(res);
+
+
+    //    var obj = {name: "丁宁"};
+    //    var ary = [12, 23, 34, 45, 56];
+    //forEach方法中的this是ary,匿名回调函数中的this默认是window;
+    // ary.forEach(function(){
+    //     console.log(this);
+    // },obj);//支持第二个参数，第二个参数是改变this关键字的
+    //    ary.forEach(function(){
+    //        console.log(this);
+    //    }.call(obj));//->给forEach赋值的时候，首先把匿名函数执行，把匿名函数中的this变为obj,把匿名函数执行的返回结果undefined赋值给forEach(不行)
+
+    //    ary.forEach(function () {
+    //        console.log(this);
+    //    }.bind(obj));
+
+
+    //2.不管是forEach还是map都在IE6-8下不兼容(对象不支持”forEach“属性和方法)->在Array的prototype上没有forEach这个方法
+    //console.log("forEach" in Array.prototype); 标准是true,IE6-8是false
+
+
+    //防myForEach
+    //    Array.prototype.myForEach=function myForEach(callBack,context){
+    //        context=context||window;
+    //        if("forEach" in Array.prototype){
+    //            this.forEach(callBack,context);
+    //            return;
+    //        }
+    //        //IE6-8下自己编写回调执行的逻辑
+    //        for(var i= 0,len=this.length;i<len;i++){
+    //            callBack&&callBack.call(context,this[i],i,this);
+    //        }
+    //    }
+    //    var obj = {name: "丁宁"};
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.myForEach(function(item,index,input){
+    //        console.log(this);
+    //    },obj);
+
+
+    //防myMap
+    Array.prototype.myMap=function myMap(callback,context){
+        context=context||window;
+        if("map" in Array.prototype){
+            return this.map(callback,context);
+        }
+        //IE6-8下自己编写回调执行的逻辑
+        var newAry=[];
+        for(var i= 0,len=this.length;i<len;i++){
+            if(typeof callback==="function"){
+                var val=callback.call(context,this[i],i,this);
+                newAry[newAry.length]=val;
+            }
+        }
+        return newAry;
+
+    }
+    var obj={name:"丁宁"};
+    var ary=[12, 23, 34, 45, 56];
+    var res=ary.myMap(function(item,index,input){
+        return item*10;
+    },obj);
+    console.log(res);
+    console.log(ary);
+</script>
+</body>
+</html>

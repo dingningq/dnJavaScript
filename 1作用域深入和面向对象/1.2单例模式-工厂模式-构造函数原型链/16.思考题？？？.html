@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+1.在数组的原型上有一个方法叫做slice，我们要求大家自己回去后自己实现一个方法myslice,要求和原来的slice功能一模一样
+Array.prototype.mySlice=function(){...};
+考虑的情况：
+slice(n,m);
+slice(n);
+slice()
+n"<" m是负数
+n"<"m
+n和m的值超过数组的长度了
+n和m不是有效数字
+……
+要求：
+不能使用数据内置的方法，比如添加不能使用push,而使用ary[ary.length-1]=xxx;
+而且要能实现链式写法
+
+<!--2.实现一个需求
+（5）.plus(10).reduce(2) 5+10-2
+Number.prototype.plus=function(n){}
+Number.prototype.reduce=function(n){}-->
+</body>
+
+<script>
+    //    Number.prototype.plus=function(n){
+    //        return this.valueOf()+n;
+    //    };
+    //    Number.prototype.reduce=function(n){
+    //        return this.valueOf()-n;
+    //    }
+    //    console.log((5).plus(10).reduce(2));
+
+    Array.prototype.mySlice=function(){
+        var result=[];
+
+    };
+</script>
+</html>

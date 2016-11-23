@@ -1,0 +1,38 @@
+移动端事件
+PC端事件：click,mouseover,mouseout,mouseenter,mouseleave,mousemove,mousedown,mouseup,mousewheel,keydown,keyup,load,scroll,blur,focus,change ...
+
+移动端事件：click, load, scroll,blur,focus,change,input(代替keyup,keydown)...
+    TOUCH事件模型(处理单手指操作)，GESTURE事件模型(处理多手指操作)
+    TOUCH：touchstart,touchmove,touchend,touchcancle
+    GESTURE:gesturestart,gesturechange,gestureend
+
+
+1.click:在移动端click属于单击事件，不是点击事件，在移动端的项目中我们经常会区分单击做什么和双击做什么，所以移动端的浏览器在识别click的时候，只有确定是单击后才会把它执行
+    在移动端使用click会存在300ms的延迟：浏览器在第一次点击结束后，还需要等到300ms看是否触发了第二次点击，如果触发了第二次点击就不属于click了，没有触发第二次点击才属于click;
+
+2.点击，单击，双击，长按，滑动，左滑，右滑，上滑，下滑...
+
+    单击和双击(在于300ms的判断)
+    点击和长按(750ms的判断)
+    点击和滑动(X/Y轴偏移的距离是否在30px以内，超过30px就是滑动)
+    左右滑动和上下滑动(x轴偏移的距离>y轴偏移的距离=左右滑 相反就是上下滑)
+    左滑和右滑（偏移的距离>0=右滑 相反就是左滑）
+
+3.移动端事件库
+->FastClick.js:解决CLICK事件300MS的延迟
+->TOUCH.js:百度云手势事件库
+    https://github.com/Clouda-team/touch.code.baidu.com
+    http://www.suchso.com/opencode/baidu-touch-js-chumo-drag.html
+
+->hammer.js
+
+->Zepto.js:
+https://github.com/madrobby/zepto.git
+
+    Zepto被誉为移动端的小型JQ,JQ由于是在PC端使用的，所以代码中包含了大量的对于IE低版本浏览器的兼容处理，而Zepto之所以应用于移动端开发，所以在JQ的基础上没有对低版本的IE进行支持
+    JQ中提供了很多的选择器类型及DOM操作方法，但是Zepto中只是实现了部分常用的选择器和方法，例如：JQ中动画方法有animate,hide,show,toggle,fadeIn,fadeOut,fadeToggle,slideDown,slideUp,slideToggle...但是Zepto中只有animate...
+    ===>Zepto的源代码大小比JQ小很多
+
+    Zepto专门为移动端开发而诞生，所以相对于JQ来说更适合移动端：
+    Zepto的animate动画方法支持了CSS3动画的操作
+    Zepto专门的准备了移动端常用的事件操作：tap,singleTap,doubleTap,longTap,swipe,swipeUp,swipeDown,swipeLeft,swipeRight...

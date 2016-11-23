@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">有本事儿点我~~</div>
+<script>
+    //我们在js中主要研究的都是函数中的this;
+    //js中的this代表的是当前行为执行的主体;JS中的context代表的是当前行为执行的环境(区域);
+    //例如:丁宁在 北京饭店吃  烤鸭  this->丁宁 context->北京饭店
+
+    //this是谁,和函数在哪定义的,和在哪执行的都没有任何的关系;如何的区分this呢?
+    //1.函数执行,首先看函数名前面是否有".",有的话"."前面是谁this就是谁,没有的话 this就是window;
+
+    //2.自执行函数中的this永远是window
+    //3.给元素的某一个事件绑定方法,当事件触发的时候,执行对应的方法,方法中的this是当前的元素
+    function fn() {
+        console.log(this);
+    }
+    var obj = {fn: fn};
+    // fn();//->window
+    // obj.fn();//this->obj
+
+    document.getElementById("div1").onclick = fn;
+    document.getElementById("div1").onclick = function () {
+        //this->#div1
+        fn();//this->window
+
+    };
+
+    //    function sum() {
+    //        fn(); //this->window
+    //    }
+    //    // sum();
+    //
+    //    var oo = {
+    //        sum: function () {
+    //            console.log(this); //this->oo
+    //            fn(); //this->window
+    //        }
+    //    };
+    //    oo.sum();
+
+    //你以为 你以为的 就是你以为的
+
+</script>
+</body>
+</html>

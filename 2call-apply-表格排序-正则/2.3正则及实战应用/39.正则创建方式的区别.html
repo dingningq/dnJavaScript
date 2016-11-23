@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var name = "丁宁";
+
+    //在字面量方式中,我们//之间包起来的所有的内容都是元字符,有的具有特殊的意义,大部分都是代表本身含义的普通元字符
+    //var reg=/^\d+"+name+"\d+$/; //这里并不是字符串拼接,所以的都代表元字符
+    //console.log(reg.test("2015丁宁2016")); //->false
+    //console.log(reg.test('2015"""nameee"2016'));//->true
+
+    //对于这样的需求,我们只能使用实例创建的方式了
+    var reg = new RegExp("^\\d+" + name + "\\d+$", "g");    //\\d转义一下,这里的\d就认为是字符串,所以要加\转义一下
+    // console.log(reg.test("2015丁宁2016"));//->true
+
+    //字面量方式和实例创建的方式在正则中的区别:
+    //1)字面量方式中出现的一切都是元字符,所以不能进行变量值的拼接,而实例创建的方式是可以的
+    //2)字面量方式中直接写\d就可以,而在实例中需要把它转译\\d
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //replace:把原有的字符替换成新的字符
+    //在不使用正则的情况下,每当执行一次只能替换一个字符
+    //var str = "ding2015ding2016ding2017";
+    //str=str.replace("ding","dingning").replace("ding","dingning");//->没有实现需求
+
+    //str=str.replace(/ding/g,"dingning");
+    //console.log(str);
+    //replace第一项的值是一个正则它的实现原理
+    //首先我们和exec捕获一样,把所有和我们正则匹配的都捕获到,然后把捕获的内容替换成我们需要替换的新内容
+    //  /ding/g 按照这个正则把str中所有可以匹配的都捕获到,然后统一都替换成我们的"dingning"
+    //    var reg = /ding/g;
+    //    console.log(reg.exec(str));//["ding", index: 0, input: "ding2015ding2016ding2017"]
+    //    console.log(reg.exec(str));//["ding", index: 8, input: "ding2015ding2016ding2017"]
+    //    console.log(reg.exec(str));//["ding", index: 16, input: "ding2015ding2016ding2017"]
+    //str = str.replace(/ding/g, function () {
+    //   console.log(arguments);
+    //第一次执行匿名函数的结果->["ding", 0, "ding2015ding2016ding2017"]
+    //第二次执行匿名函数的结果->["ding", 8, "ding2015ding2016ding2017"]
+    //第三次执行匿名函数的结果->["ding", 16,"ding2015ding2016ding2017"]
+
+    //    return "dingning";
+    //});
+    //第二个参数换成一个函数
+    //1)匿名函数执行多少次,取决于正则能在字符串中捕获多少次->正则捕获三次,所以我们的匿名函数也执行三次
+    //2)我们每一次执行匿名函数,里面传递的参数值arguments和我们自己通过exec捕获到的结果是非常类似的(即使正则有分组,我们同样可以通过arguments获取到分组捕获的内容)
+    //3)return 你返回的结果是啥,就相当于把当前这一次大正则捕获的内容替换成你返回的内容
+
+
+    var str = "ding2015ding2016ding2017";
+    str = str.replace(/(\d+)/g, function () {
+        //console.log(arguments[0]); //每一次执行匿名函数把我们大正则捕获的内容获取到
+        //return "ning"
+        //以下是加上括号之后
+        // console.log(arguments[1]);//获取每一次执行匿名函数我们正则捕获到的第一个分组中的内容//->["2015", "2015", 4, "ding2015ding2016ding2017"]
+        console.log(RegExp.$1);
+    });
+    //RegExp.$1 ->获取第一个分组捕获的内容
+</script>
+</body>
+</html>

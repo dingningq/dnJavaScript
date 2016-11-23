@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn() {
+        this.x = 100;
+        this.y = 200;
+    }
+     Fn.prototype={
+     //constructor:Fn,
+     getX:function(){
+     console.log(this.x);
+     }
+     }
+    Object.defineProperty(Fn.prototype, "constructor", {
+        enumerable: false,  //原生的constructor属性是不可枚举的 如果想跟原生的一样 dir(f1)是虚的 就要用这种方法
+        value: Fn
+    })
+    var f1 = new Fn;
+    var f1Keys = Object.keys(f1); //Object.keys()这个方法接收一个对象作为参数,返回一个包含私有属性所有可枚举属性的字符串数组
+    console.log(f1Keys);
+    var f1Keys2 = Object.keys(Fn.prototype);//返回一个包含公有属性所有可枚举属性的字符串数组
+    console.log(f1Keys2);
+
+    var f1keys3 = Object.getOwnPropertyNames(Fn.prototype);//  如果你想要得到所有实例属性,无论它是否可枚举 都可以用Object.getOwnPropertyName()方法
+    console.log(f1keys3);
+
+
+
+
+    /*var o={
+     toString:function(){
+     return "My Object";
+     }
+     };
+     for(var key in o){
+     if(key==="toString"){
+     alert("Found toString");
+     }
+     }*/
+</script>
+</body>
+</html>

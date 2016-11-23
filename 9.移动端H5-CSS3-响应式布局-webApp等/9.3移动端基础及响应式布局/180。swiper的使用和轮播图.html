@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+    <style>
+        html {
+            font-size: 100px;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .swiper-container {
+            margin: 0 auto;
+            height: 3rem;
+            overflow: hidden;
+        }
+        .swiper-slide{
+            height: 3rem;
+        }
+        .swiper-slide img{
+           width:100%;
+            height: 100%;
+        }
+        .swiper-pagination-bullet-active{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<section class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img data-src="img/banner1.jpg" alt="" class="swiper-lazy" />
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+        <div class="swiper-slide">
+            <img data-src="img/banner2.jpg" alt="" class="swiper-lazy"/>
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+        <div class="swiper-slide">
+            <img data-src="img/banner3.jpg" alt="" class="swiper-lazy"/>
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+        <div class="swiper-slide">
+            <img data-src="img/banner4.jpg" alt="" class="swiper-lazy"/>
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+        <div class="swiper-slide">
+            <img data-src="img/banner5.jpg" alt="" class="swiper-lazy"/>
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</section>
+<script src="js/swiper.min.js"></script>
+<script charset="utf-8">
+    //->根据当前屏幕宽度和设计稿宽度的比例，动态计算一下当前宽度下的fontSize值应该是多少，如果fontSize的值改变了，之前设定的所有REM单位的值 自动会跟着放大或者缩小
+
+    ~function () {
+        var desW = 640,
+                winW = document.documentElement.clientWidth,
+                ratio = winW / desW;
+               document.documentElement.style.fontSize = ratio * 100 + 'px';
+    }();
+
+    //->初始化swiper实现区域的滑动
+    //new Swiper([container selector],[settings])
+    var swiper1=new Swiper('.swiper-container',{
+        loop:true,/*无缝衔接滚动*/
+        autoplay:2000, /*自动播放*/
+        autoplayDisableOnInteraction : false, /*滑动一下后，继续自己图片轮播*/
+        grabCursor : true, /*鼠标放上面变小手*/
+        pagination: '.swiper-pagination',// 如果需要分页器
+        lazyLoading : true,//图片有延迟加载
+        lazyLoadingInPrevNext : true, //设置为true允许将延迟加载应用到最接近的slide的图片（前一个和后一个slide）
+        effect : 'slide',/*这是各种切换效果 都可以设置*/
+        onInit:function(swiper){
+            console.log(swiper instanceof Swiper) //->swiper是不是Swiper这个实例 ->结果是true
+
+        }
+    })
+</script>
+</body>
+</html>

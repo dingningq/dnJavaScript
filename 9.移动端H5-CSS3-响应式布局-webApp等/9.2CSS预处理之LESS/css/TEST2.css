@@ -1,0 +1,125 @@
+/*
+.public{
+  width: 100px;
+  height: 100px;
+}
+/!*征用：把原有的样式克隆一份一模一样的拿过来使用，如果PUBLIC加上括号，PUBLIC本身不编译*!/
+.box{
+  .public;
+}
+
+/!*公用：和原来的选择器公用一套样式，但是需要保证原来的选择器不加括号*!/
+.box2{
+  &:extend(.public);
+}
+.box3:extend(.public){
+
+}
+
+/!*命名空间和作用域*!/
+@v:1;
+.box{
+  @v:10;
+  &:hover{
+    z-index: @v;
+  }
+}
+
+
+/!*box继承了所有public下的属性*!/
+.public2(){
+  width: 100px;
+  height: 100px;
+
+  .link{
+    width: 200px;
+    height: 200px;
+  }
+  &:hover{
+    background:#eee;
+  }
+}
+.box{
+  .public2 !important;  /!*把public及子孙元素的样式都继承过来了*!/
+}
+
+*/
+/*
+.public(@x,@y){
+  @result:@x+@y
+}
+.pub(@x,@z){
+  @result_pub:@x+@z;
+}
+.box{
+  .public(10,20);
+  z-index:@result;
+  .pub(15,10);
+  font-size: @result_pub+px;
+}*/
+/*
+.public(@x) when(@x<10) and (@x>0){
+ background:red;
+}
+.public(@x) when(iscolor(@x)){
+  background:green;
+}
+.public(@x) when(isnumber(@x)){
+  background:blue;
+}
+
+.box{
+  .public(green);
+}
+*/
+/*
+.public(@n,@i:1) when(@i<=@n){  //当@i大于@n时
+  .box-@{i}{
+    & when(@i=1) {
+      width: 100px;
+    }
+    & when(@i=2) {
+      width: 100px;
+    }
+    & when(@i=3) {
+      width: 200px;
+    }
+    & when(@i=4) {
+      width: 200px;
+    }
+  }
+
+
+  .public(@n,@i+1);
+}
+.public(4);*/
+/*//在编写的时候，+代表以逗号分隔，+_代表多个之前以空格分隔。
+.transform(@v:1){
+  -webkit-transform+_:scale(@v);
+}
+
+.box{
+  .transform(1.5);
+}
+
+.box2{
+  .transform(1.5);
+  -webkit-transform+_:rotate(45deg);
+}*/
+/*以下可以把公共的样式common导入进来，并且不想让公共样式编译加 reference*/
+/*.box{
+  .center;
+  width: 100px;
+  height: 100px;
+}*/
+/*
+@c:'#000';
+@url:'../img';
+@w100:100px;
+*/
+/*background:color(@c);*/
+/*data-uri:把我们需要使用的素材图片转换成BASE64编码，项目中尤其是移动端的项目，节省了图片的加载时间，是图片优化的一个手段，LESS对于大图片是不能转码的，我们可以使用BASE64工具转码(tool.css-js.com);项目中慎用BASE64，当你在移动端项目中，有一些大图实在没有办法处理的情况下在使用BASE64*/
+.box {
+  z-index: 4;
+  background: #ffffff;
+}

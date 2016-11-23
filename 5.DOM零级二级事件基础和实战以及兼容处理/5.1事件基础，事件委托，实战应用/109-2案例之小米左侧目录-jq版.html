@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+        }
+        ul,li{list-style: none;}
+
+        .box {
+            width: 1226px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .box > img {
+            width: 100%;
+            height: 460px;
+        }
+
+        .navBg {
+            height: 460px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 234px;
+            z-index: 21;
+        }
+
+        .navBg>ul {
+            padding: 20px 0;
+            height: 420px;
+            background: #333;
+            color: #fff;
+
+        }
+
+        .navBg>ul li a.title {
+            height: 42px;
+            line-height: 42px;
+            padding-left: 30px;
+            position: relative;
+            display: block;
+        }
+        .navBg>ul li a.title h3{font-weight: normal;
+            display: inline-block;}
+        .navBg>ul li a.title i{
+            position: absolute;
+            top:12px;
+            right: 20px;
+            font-size: 16px;
+            line-height: 16px;
+            font-style: normal;
+        }
+        .navBg>ul li a.hover {
+            color: #fff;
+            text-decoration: none;
+            background: #ff6700;
+        }
+
+        .navBg>ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .children {
+            position: absolute;
+            left: 234px;
+            top: 0px;
+            width: 550px;
+            height: 458px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+            background: #fff;
+            display: none;
+
+        }
+        .children-list{padding:20px 5px 10px 20px;}
+        .children-list li.goods{
+            position: relative;
+            width: 260px;
+            height: 70px;
+            float: left;
+
+
+        }
+        .children-list li.goods a.link{color:#333; padding:18px 20px; line-height: 40px; }
+        .children-list li.goods a.link img{
+            vertical-align: middle;
+        }
+        .children-list li.goods a.link span{
+            line-height: 40px;
+        }
+        .children-list li.goods a.btn-buy{
+            display: inline-block;
+            text-align: center;
+            color:#333;
+            width: 58px;
+            height: 22px;
+            line-height: 22px;
+            border: 1px solid #f25807;
+            color: #f25807;
+        }
+        .children-list li.goods a.btn-buy:hover{
+            background: #f25807;
+            color: #fff;
+        }
+
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .clearfix {
+            _zoom: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="img/9317d3c4-c87e-4288-85a8-9cafced2646f.jpg" alt=""/>
+
+    <div class="navBg">
+        <ul class="nav clearfix" id="nav">
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>手机 电话卡</h3> <i>&gt;</i>
+                </a>
+
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                        <a href="javascript:;" class="link">
+                            <img src="img/mi5bar80.jpg" alt=""/>
+                            <span>小米手机5</span>
+                        </a>
+                        <a href="#" class="btn btn-buy">选购</a>
+                    </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>笔记本 平板</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米笔记本</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米手机5</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>电视 盒子</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米电视43寸</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米电视43寸</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>小米电视43寸</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>路由器 智能硬件</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>移动电源 电池 插线板</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>rrrrrrrrrrr</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>rrrrrrrrrrrr</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>rrrrrrrrrrrrrr</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>耳机 音箱</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>aaaaaaaaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>aaaaaaaaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>aaaaaaaaaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>保护套 贴膜</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>xxxxxxxxx</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>线材 支架 存储卡</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>ccccccccccc</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>ccccccccccccc</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>ccccccccccccc</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>箱包 服饰</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>bbbbbbbbbb</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>bbbbbbbbbbbb</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>bbbbbbbbbbbb</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="item-list">
+                <a href="javascript:;" class="title">
+                    <h3>米兔 生活周边</h3> <i>&gt;</i>
+                </a>
+                <div class="children">
+                    <ul class="children-list">
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>工工aaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>工工aaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                        <li class="goods">
+                            <a href="javascript:;" class="link">
+                                <img src="img/mi5bar80.jpg" alt=""/>
+                                <span>工工aaaaaa</span>
+                            </a>
+                            <a href="#" class="btn btn-buy">选购</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function(){
+        $("#nav>.item-list").hover(function(){
+            $(this).children("a").addClass("hover");
+            $(this).find(".children").css("display","block");
+        },function(){
+            $(this).children("a").removeClass("hover");
+            $(this).find(".children").css("display","none");
+        })
+    })
+</script>
+<script>
+
+</script>
+</body>
+</html>

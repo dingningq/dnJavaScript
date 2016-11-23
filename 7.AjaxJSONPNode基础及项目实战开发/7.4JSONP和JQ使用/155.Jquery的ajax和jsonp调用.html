@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script>
+    //->ajax
+    //    $.ajax({
+    //        url:"data.txt",
+    //        type:"get",
+    //        dataType:"json", //返回来的结果是JSON格式的
+    //        data:null, //如果的post的请求，请求的内容都放在请求主体当中
+    //        async:true,
+    //        timeout:3000,//->设置超时时间，一般都设定为3000ms(超过3秒钟还没有请求就直接跑到error里去了)
+    //        cache:false, //->设定GET请求的时候不走缓存数据，原理其实就是在URL末尾加随机数，默认是true
+    //        success:function(data){
+    //            console.log(data);
+    //        },
+    //        error:function(){}//请求失败，一般不用
+    //
+    //    })
+
+
+    //JSONP http://matchweb.sports.qq.com/kbs/calendar?columnId=100000
+    //->JSONP都是GET和异步请求的，不存在其他的请求方式和同步请求，而且jQuery默认就会给jsonp的请求清除缓存
+    $.ajax({
+        url: "http://matchweb.sports.qq.com/kbs/calendar?columnId=100000",
+        dataType: "jsonp", //返回来的结果是JSON格式的
+        jsonpCallback: "fn", //->自定义传递给服务器的函数名，而不是使用jquery自动生成的
+        jsonp:"callback",//->把传递函数名的那个形参callback变为cb
+        success: function (data) {
+            console.log(data);
+        }
+    });
+    //->http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&cb=fn&_=随机数
+
+</script>
+</body>
+</html>

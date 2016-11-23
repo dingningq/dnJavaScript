@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>本地储存</title>
+</head>
+<script src="js/cookie.js"></script>
+<script src="js/md5.js"></script>
+<body>
+<script>
+    //->在客户端运行的JS是不能操作用户电脑磁盘中的文件的(保护客户端运行的安全)
+    //->JS中的本地存储：
+    //->使用JS向浏览器的某一个位置中存储一些内容，浏览器即使关闭了，存储的信息也不会销毁，当在重新打开浏览器的时候 我们依然可以获取到上一次存储的信息
+
+
+    //->本地存储的方案：
+    //传统：
+    //->cookie:把信息存储到客户端的浏览器中(但是项目服务器端也是可以获取cookie的)
+    //->session:把信息存储到服务器上的(服务器存储)
+
+    //HTML5: webStorage
+    //->localStorage:永久存储到客户端的本地
+    //->sessionStorage:信息的会话存储，会话窗口存在信息也存在，会话窗口关闭信息就消失了
+
+
+    //->2.cookie,localStorage,sessionStorage
+
+    //->WebStorage
+    //setItem([key],[value]):向客户端的本地存储一条记录，存储的[value]需要是字符串格式的，如果编写的不是字符串，浏览器也会默认转化为字符串然后在进行存储;同源下存储的[key]是不会重复的，如果之前有的话，是把存储的信息值重新的进行修改
+    //getItem([key]):获取之前存储的值
+    //removeItem([key]):移除key对应的存储记录
+    //clear():把当前源下所有的存储记录都移除掉
+    //localStorage.length:获取存储的总记录条数
+    //localStorage.key(0):获取索引为0这一项的key是什么
+
+    //localStorage.setItem('age',7);//存储
+    //localStorage.setItem('age',JSON.stringify({dingning:'30'}));
+    //console.log(typeof(localStorage.getItem('age')));
+    //console.log(localStorage.getItem('age'));
+    //localStorage.removeItem('age');
+    //localStorage.clear();
+    //console.log(localStorage.length);//->1
+    //console.log(localStorage.key(0));//->age
+
+    //->localStorage和sessionStorage的区别：
+    //localStorage属于永久存储到本地，不管是刷新页面还是关掉页面或者是关掉浏览器，存储的内容都不会消失，只有我们自己手动的去删除才会消失(不管是杀毒软件还是浏览器自带的清除历史记录功能都不能把localStorage存储的内容移除掉)
+    //sessionStorage属于临时的会话存储，只要当前的页面不关闭，信息就可以存储下来，但是页面一但关闭，存储的信息就会自动清除(F5刷新页面只是把当前的DOM结构等进行重新的渲染，会话并没有关闭)
+
+
+    //->cookie
+    //document.cookie="dingning=29";
+
+    /*localStorage.setItem('n',100);
+     sessionStorage.setItem('n',200);*/
+    /*cookieRender.set({
+        name: 'dingning',
+        value: 30
+    });
+    console.log(cookieRender.get('dingning'));*/
+
+
+    //->cookie和localStorage的区别
+    //cookie兼容所有的浏览器，但是localStorage不兼容IE6-8
+    //cookie存储内容的大小是由限制的，一般同源下只能存储4KB的内容，localStorage存储的内容也有大小限制，一般同源下只能存储5Mb
+    //cookie存储的内容是有过期时间的，而localStorage是永久存储到本地，使用杀毒软件或者浏览器自带的清除垃圾的功能都可能会把存储的cookie给删除掉
+    //用户可能出于安全的角度禁用cookie(无痕浏览器)，但是不能禁止localStorage
+
+    //->真实项目中的本地存储都使用哪些东西？
+    //cookie:
+    //->记住用户名密码或者自动登录：用户的部分信息，当用户登录成功后我们会把用户的一些信息记录到本地cookie中，这样在项目中的任何页面都可以知道当前登录的用户是哪一个了;购物车...(存储少量信息或者是需要浏览器兼容的都需要使用cookie来进行存储)
+
+    //localStorage
+    //在PC端我们可以用其存储 某一个JS或者CSS中的源代码;还可以把一些不需要经常更新的数据存储到本地，存储的时候可以设置一个存储的时间，以后重新刷新页面，看一下时间有没有超过预定的时间，如果已经超过了，我们从新获取最新数据，没超过我们使用本地数据;
+
+    //本地存储都是明文存储
+    //对于重要的信息我们一般不要存储到本地，如果非要存储的话，我们需要把存储的信息进行加密
+    //->可逆转加密：加密完成还可以解密回来
+    //->不可逆转加密：MD5
+
+</script>
+<script>
+    //->escape&&unescape可以对中文的字符串进行编码和解码，防止传递存储过程中出现乱码，除此之外可以使用的还有很多，encodeURI() decodeURI()  encodeURIComponent()  decodeURIComponent()
+    //    var str='丁宁29';
+    //    var n=escape(str);
+    //    console.log(n);
+    //
+    //    var m=unescape(n);
+    //    console.log(m);
+
+    //加密
+    var name='丁宁';
+    console.log(hex_md5(name));
+
+</script>
+</body>
+</html>

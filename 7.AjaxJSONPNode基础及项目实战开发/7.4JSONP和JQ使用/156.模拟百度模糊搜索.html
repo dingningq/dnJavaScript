@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            outline: none;
+            display: block;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            color: #000;
+        }
+
+        .box {
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .box input {
+            border: 1px solid green;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px;
+            width: 278px;
+        }
+
+        .box ul {
+            display: none;
+            padding:10px 0;
+            border: 1px solid green;
+            border-top: none;
+        }
+        .box ul li{
+            height: 30px;
+            line-height: 30px;padding:0 10px; cursor: pointer;}
+        .box ul li:hover{background: #ccc;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="text" id="searchInp"/>
+    <ul id="searchBox">
+        <!--<li>珠峰培训课</li>-->
+        <!--<li>珠峰怎么样</li>-->
+        <!--<li>珠峰还可以</li>-->
+    </ul>
+</div>
+<script charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
+<script>
+    var searchModule=(function(){
+        var $searchInp=$("#searchInp"),
+                $searchBox=$("#searchBox"),
+                interval=100;
+
+        //->向百度的服务器发送JSONP请求，把数据获取到之后绑定到窗器中
+        function bindHTML(){
+            var searchKey=$searchInp.val().replace(/(^ +| +$)/g,"");
+            function callback(data){
+                data=(data["s"]);
+                var str='';
+                $.each(data,function(index,item){
+                    if(index<=2){
+                        str+='<li>'+item+'</li>';
+                    }
+                });
+                if(str.length==0){
+                    $searchBox.html(str);
+                    return;
+                }
+                $searchBox.html(str).stop().slideDown(interval);
+
+            }
+            $.ajax({
+                //url: "http://suggestion.baidu.com/su?wd=" + searchKey + "&_=" + Math.random(),
+                url: "http://suggestion.baidu.com/su?wd="+searchKey+"&_=" + Math.random(),
+                dataType:"jsonp",
+                jsonp:"cb",
+                success:callback
+        })
+        }
+
+        //->事件绑定和模块入口
+        function init(){
+            //->文本框获取焦点或者输入内容的时候 判断当前文本框中是否有内容，有内容绑定数据，没有内容隐藏展示框
+            $searchInp.on("focus keyup keydown",function(){
+                var val=$(this).val();
+                if(val.length>0){
+                    bindHTML();
+                    return;
+                }
+                $searchBox.stop().slideUp(interval);
+
+            });/*.on("blur",function(){
+                //->当文本框失去焦点的时候，我们只需要收起展示框即可
+                //->加一个定时器延迟其实就是想让例子的li点击事件先触发，然后在触发文本框的失去焦点事件
+                window.setTimeout(function(){
+                    $searchBox.stop().slideUp(interval);
+                },interval)
+
+            });*/
+
+            //->事件委托处理，点击的是LI我们让LI中的内容显示在文本框中，展示框消失;点击的是文本框什么事情都不做;否则展示框消失
+            $(document).on("click",function(e){
+                var tar= e.target,
+                        tarTag=tar.tagName.toUpperCase(),
+                        $tar=$(tar);
+
+                if(tarTag==="LI"&&tar.parentNode.id=="searchBox"){
+                    $searchInp.val($tar.html());
+                    $searchBox.stop().slideUp(interval);
+                    return;
+                }
+                if(tar.id==="searchInp"){
+                    return;
+                }
+
+                $searchBox.stop().slideUp(interval);
+
+            })
+            document.onkeydown=function(e){
+
+                e= e||window.event;
+                var tar= e.target,tarTag=tar.tagName.toUpperCase();
+                if(e && e.keyCode==40){
+                    console.log(e.keyCode);
+                    if(tarTag==="LI"&&tar.parentNode.id=="searchBox"){
+                        console.log(tar.value());
+                        // tar.style.background="#ccc";
+                    }
+                }
+            }
+        }
+        return {init:init};
+    })();
+    searchModule.init();
+</script>
+</body>
+</html>

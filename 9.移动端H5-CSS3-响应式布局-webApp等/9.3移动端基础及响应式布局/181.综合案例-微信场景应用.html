@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css"/>
+
+    <link rel="stylesheet" href="css/181-index.css"/>
+
+</head>
+<body>
+<section class="main">
+    <!--Music-->
+    <div class="music move" id="musicMenu" style="position: absolute; z-index: 100;">
+        <audio src="img/swiper/1.mp3" preload="none" loop id="musicAudio"></audio>
+        <!--<audio>
+            <source src="audio/beyond.mp3" type="audio/mpeg"/>
+            <source src="audio/beyond.wav" type="audio/wav"/>
+            <source src="audio/beyond.ogg" type="audio/ogg"/>
+        </audio>-->
+    </div>
+    <!--container场景切换区域-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--slide1-->
+            <div class="swiper-slide page1" >
+                <img src="img/swiper/page1-text1.png" alt=""/>
+                <img src="img/swiper/page1-text2.png" alt=""/>
+                <img src="img/swiper/page1-text3.png" alt=""/>
+                <img src="img/swiper/page1-text4.png" alt=""/>
+            </div>
+            <!--slide2-->
+            <div class="swiper-slide page2" >
+                <img src="img/swiper/page2-text1.png" alt=""/>
+                <img src="img/swiper/page2-text2.png" alt=""/>
+                <img src="img/swiper/page2-text3.png" alt=""/>
+                <img src="img/swiper/page2-text4.png" alt=""/>
+            </div>
+        </div>
+    </div>
+    <!--arrow-->
+    <div class="arrow"></div>
+
+</section>
+<script src="js/swiper.min.js"></script>
+<script src="js/fastclick.min.js"></script>
+<script src="js/181-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/ajax.js" charset="utf-8"></script>
+<script>
+    var xhr=createXHR();
+    xhr.open("get","/getList",true);
+    //->HTTP METHOD:客户端向服务器端发送请求方式
+    //->以下的请求方式不管哪一种都可以向服务器传递数据，也可以从服务器获取到数据 ，而且从本质意义上讲以下的方式是没有任何区别的，例如：用POST做的事情，用GET也能做。而我们给大家接下来讲的区别都是目前开发者门约定俗称的规范
+
+    //GET:一般应用于从服务器获取数据（给服务器的数据少，从服务器拿的数据多，项目中最常用的请求方式就是GET）
+    //使用GET请求给服务器传递内容我们一般都使用“URL”问号传参的方式
+    //xhr.open("get","/getList?num=12");
+
+    //POST: 一般应用于向服务器推送数据(给服务器的多，从服务器拿下来的少)
+    //->使用POST请求给服务器传递内容我们一般都使用"请求主体的方式"传递给服务器
+    //xhr.open("post","/getList");
+    //xhr.send('{"name":"dingning","age":30}');
+
+    //PUT:一般应用于给服务器上增加资源文件(我们上传图片功能)
+    //DELETE：一般应用于从服务器上删除资源文件
+    //HEAD：一般应用于只获取服务器的响应头信息
+
+
+    //GET  PK  POST
+    //1).“大小问题”
+    //->get请求传递给服务器的内容存在大小的限制，而POST理论上没有限制
+    //原因：GET通过URL传参给服务器，而每个浏览器对于URL的长度存在限制，谷歌8KB，火狐7kb,IE2kb的长度限制，如果URL的长度超过限制，浏览器会把超出的部分截取;
+    //2)."缓存的问题"
+    //GET请求会出现缓存(这个缓存不一定是304)，POST是没有缓存的
+    //在项目中我们的GET请求一般不会让其出现缓存 “清除缓存”
+    //xhr.open("get","/getList?num=12&_="+Math.random());
+
+    //3)"安全问题"
+    //一般来说GET不安全，而POST相对安全一些
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

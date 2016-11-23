@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //Array.prototype.slice 截取数组 slice(n,m)从索引n开始,到m处不包含m,将找到这几项截取出来
+    //Array.prototype.slice=function(){}
+
+
+    var ary = [12, 23, 34];
+    //ary.slice ->ary这个实例通过原型链的查找机制找到Array.prototype上的slice方法
+    //ary.slice(); ->让找到的slice方法执行,在执行slice方法的过程中,才把ary数组进行截取
+
+    //Function.prototype.call=function(){};
+    var obj = {name: "丁宁"};
+    function fn() {
+        console.log(this);
+    }
+    fn();
+    //obj.fn();  //Uncaught TypeError: obj.fn is not a function,因为obj.fn是undefined; undefined()是报错
+
+    fn.call(obj);
+    //call方法作用
+    //->首先我们让原型上的call方法执行,在执行call方法的时候,我们让fn方法中的this变为第一个参数值obj;然后再把fn这个函数执行;
+
+
+
+    //自己模拟内置的call方法,写一个myCall方法,深入探讨call方法的执行原理
+    Function.prototype.myCall=function(context){
+        //->1.让fn中的this关键字变为context的值 ->obj
+        //->让this这个函数中的"this关键字"变为context
+        var that=eval(this.toString().replace("this","context")); //eval就是把字符串变成表达式,replace是替换的意思,把调用myCall这个方法中的fn中的this替换成obj
+
+
+        //->2.让fn方法在执行
+        this() //fn执行也就是myCall中的this执行
+    };
+    //fn.myCall(obj);
+    //sum.myCall(obj);
+
+</script>
+</body>
+</html>

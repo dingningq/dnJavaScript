@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //第一步:将指定格式的时间字符串中的年月日等信息存入一个数组中
+    var str = "2016-7-5 15:54:00", reg = /^(\d{4})[-/](\d{1,2})[-/](\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/g, ary = [];
+    str.replace(reg, function () {
+        //console.log(arguments);
+        ary=[].slice.call(arguments).slice(1,7);
+    });
+    console.log(ary);
+
+
+
+    //第二部:设定好我们目标时间格式,把数组中对应的项替换到指定的区域内
+    var resStr = "{0}年{1}月{2}日 {3}时{4}分{5}秒";
+
+
+    resStr = resStr.replace(/{(\d)+}/g, function () {
+        console.log(arguments);
+        var val = ary[arguments[1]];
+        if (val.length===1) {
+            val = "0" + val;
+        };
+        return val;
+    })
+    console.log(resStr);
+</script>
+</body>
+</html>

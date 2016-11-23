@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+
+
+        html {
+            font-size: 100px;
+        }
+        html, body {
+            width: 100%;
+            color: #000;
+            font-size: .14rem;
+            overflow-x: hidden;
+        }
+        .header {
+            height: .5rem;
+            line-height: .5rem;
+            background: #eee;
+        }
+        h1{font-size: .18rem;}
+
+        .header span {
+            float: left;
+            width: 25%;
+            text-align: center;
+        }
+
+        .content li {
+            height: .4rem;
+            line-height: .4rem;
+        }
+
+        .content li:last-child {
+            border-bottom: none
+        }
+
+        .content li:nth-child(even) {
+            background: #eee;
+        }
+        .content li span{
+            float: left;width: 25%; text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>
+        <span>编号</span>
+        <span>姓名</span>
+        <span>性别</span>
+        <span>分数 </span>
+    </h1>
+</header>
+<section class="content">
+    <ul>
+        <!--<li>
+            <span>01</span>
+            <span>女</span>
+            <span>丁宁</span>
+            <span>99</span>
+        </li>-->
+
+    </ul>
+</section>
+<!--EJS:模板引擎数据绑定-->
+<script charset="utf-8" src="js/ejs.min.js"></script>
+<!--制作EJS渲染的模板：在原有的HTML结果基础上把我们的数据嵌套进来，EJS语法规定了我们需要编写的JS代码写在<%%>即可，需要在模板中输出一些内容，把需要输出的内容写在<%=%>-->
+<script charset="utf-8" type="text/template" id="conTemplate">
+    <%$.each(matchData,function(index,item){%>
+    <li>
+        <span><%=item.id%></span>
+        <span><%=item.name%></span>
+        <span><%=item.sex==1?'女':'男'%></span>
+        <span><%=item.score%></span>
+    </li>
+    <%})%>
+</script>
+<script charset="utf-8" src="js/zepto.min.js"></script>
+<script>
+    document.documentElement.style.fontSize=document.documentElement.clientWidth/320*100+'px';
+//->字符串拼接绑定数据有自己的弊端：开发效率低，JS代码结构乱...
+//    function callBack(data){
+//        var str='';
+//        //console.log(data instanceof Array);
+//        $.each(data,function(index,item){
+//            str+='<li>';
+//            str+='<span>'+item.id+'</span>';
+//            str+='<span>'+item.name+'</span>';
+//            str+='<span>'+(item.sex==1?"女":"男")+'</span>';
+//            str+='<span>'+item.score+'</span>';
+//            str+='</li>';
+//        });
+//        $('.content>ul').html(str);
+//    }
+
+
+    //->使用模板引擎渲染页面中的数据：EJS
+    function callBack(data){
+        //->1)把我们在HTML结构script中制作的模板字符串获取到
+        var template=$('#conTemplate').html();
+        //->2)使用EJS中的RENDER向指定模板中提供需要的数据,EJS会把模板和字符串按照既定的规则进行解析渲染，最后得到的是数据和HTML结构拼接在一起的字符串
+        var result=ejs.render(template,{matchData:data});
+        //->3)把拼接好的数据放入到页面指定容器中
+        $('.content>ul').html(result);
+    }
+    $.ajax({
+        url:'json/student.json',
+        type:'get',
+        dataType:'json',
+        cache:false,
+        success:callBack
+    })
+</script>
+</body>
+</html>

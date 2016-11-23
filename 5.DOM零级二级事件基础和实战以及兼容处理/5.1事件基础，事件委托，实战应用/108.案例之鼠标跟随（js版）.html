@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            position: relative;
+            margin: 20px auto;
+            width: 300px;
+            height: 300px;
+            background: #008000;
+        }
+
+        #mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <!--<div id="mark"></div>-->
+</div>
+<script>
+    var oBox=document.getElementById("box");
+
+    //阻止mark盒子的onmouseover行为的冒泡传播
+    //->依然有问题：鼠标快速移动，首先会到mark上，此时浏览器在计算mark的位置，计算完成，mark到达指定的位置，此时鼠标又重新的回到box上,触发了box的mouseover,也触发了mark的mouseout,mark的mouseout被触发，也会传播到box的mouseout上，会把mark先删除，然后在创建。。
+
+//    oBox.onmouseover=function(e){
+//        e=e||window.event;
+//        var mark=document.createElement("div");
+//        mark.id="mark";
+//        this.appendChild(mark);
+//        mark.style.left= e.clientX-this.offsetLeft+5+"px";
+//        mark.style.top= e.clientY-this.offsetTop+5+"px";
+//
+//        mark.onmouseover=function(e){
+//            e=e||window.event;
+//            e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+//        }
+//        mark.onmouseout=function(e){
+//            e=e||window.event;
+//            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+//        }
+//
+//    }
+//    oBox.onmousemove=function(e){
+//        e=e||window.event;
+//        var mark=document.getElementById("mark");
+//        if(mark){
+//            mark.style.left= e.clientX-this.offsetLeft+5+"px";
+//            mark.style.top= e.clientY-this.offsetTop+5+"px";
+//        }
+//    }
+//    oBox.onmouseout=function(e){
+//        e=e||window.event;
+//        if(mark){
+//            this.removeChild(mark);
+//
+//        }
+//    }
+
+
+
+
+    //->onmouseenter和onmouseover都是鼠标滑上去的行为，但是onmouseenter浏览器默认阻止了它的冒泡传播（mark的onmouseenter行为触发，不会传播到耿强）;而onmouseover是存在冒泡传播的，想要阻止的话只能自己写代码阻止了
+    oBox.onmouseenter=function(e){
+        e=e||window.event;
+        var mark=document.createElement("div");
+        mark.id="mark";
+        this.appendChild(mark);
+        mark.style.left= e.clientX-this.offsetLeft+5+"px";
+        mark.style.top= e.clientY-this.offsetTop+5+"px";
+    }
+    oBox.onmousemove=function(e){
+        e=e||window.event;
+        var mark=document.getElementById("mark");
+        if(mark){
+            mark.style.left= e.clientX-this.offsetLeft+5+"px";
+            mark.style.top= e.clientY-this.offsetTop+5+"px";
+        }
+    }
+    oBox.onmouseleave=function(e){
+        e=e||window.event;
+        if(mark){
+            this.removeChild(mark);
+
+        }
+    }
+</script>
+</body>
+</html>

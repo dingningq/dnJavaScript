@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   function getBrowserInfo(){
+       var navAgent=navigator.userAgent.toLocaleLowerCase();
+       var regStr_ie=/msie[ \d.]+;/gi;
+       var regStr_ff=/firefox\/[\d.]+/gi;
+       var regStr_chrome=/chrome\/[\d.]+/gi;
+       var regStr_saf=/safari\/[\d.]+/gi;
+
+       //IE
+       if(navAgent.indexOf("msie")>0){
+           return navAgent.match(regStr_ie);
+       }
+       if(navAgent.indexOf("firefox")>0){
+           return navAgent.match(regStr_ff);
+       }
+       if(navAgent.indexOf("chrome")>0){
+           return navAgent.match(regStr_chrome);
+       }
+       if(navAgent.indexOf("safari")>0&&navAgent.indexOf("chrome")<0){
+           return navAgent.match(regStr_saf);
+       }
+
+   }
+    var brower=getBrowserInfo();
+        //alert(brower);
+    var verinfo=(brower+"").replace(/[^0-9.]/ig,"");
+    console.log(verinfo);
+
+
+</script>
+</body>
+</html>

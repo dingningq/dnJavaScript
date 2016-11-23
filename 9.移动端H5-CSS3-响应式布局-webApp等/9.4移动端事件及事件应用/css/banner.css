@@ -1,0 +1,51 @@
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    font-size: 100px;
+}
+
+.banner {
+    position: relative;
+    height: 3rem;
+    overflow: hidden;
+}
+
+.banner .wrapper {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+}
+
+.banner .wrapper .slide {
+    height: 100%;
+    float: left;
+    background: rgba(0,0,0,0.1);
+}
+
+.banner .wrapper .slide img {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.tip{
+    position: absolute;
+    bottom: .1rem;
+    left: 0;
+    width: 100%;
+    height: .16rem;text-align: center;
+}
+.tip li{
+    display: inline-block;
+    margin:0 .03rem;
+    width:.16rem;height: .16rem;line-height: .16rem;
+    border-radius: 50%;
+    vertical-align: top;
+    background: rgba(0,0,0,0.2);
+}
+.tip li.bg{
+    background: #007aff;
+}

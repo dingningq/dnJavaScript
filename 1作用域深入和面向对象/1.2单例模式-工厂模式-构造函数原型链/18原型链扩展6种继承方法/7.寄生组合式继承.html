@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function A(){
+        this.x=100;
+    }
+    A.prototype.getX=function(){
+        console.log(this.x);
+    };
+    function B(){
+        //this->n
+        A.call(this);
+    }
+    B.prototype=objectCreate(A.prototype);
+    B.prototype.constructor=B;
+    var n=new B;
+    console.dir(n);
+    function objectCreate(o){
+        function fn(){
+
+        }
+        fn.prototype=o;
+        return new fn;
+    }
+    n.__proto__.getX();
+</script>
+</body>
+</html>

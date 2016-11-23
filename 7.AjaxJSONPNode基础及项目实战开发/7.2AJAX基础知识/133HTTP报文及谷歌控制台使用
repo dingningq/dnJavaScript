@@ -1,0 +1,45 @@
+NethWork->文件右侧->Headers报文请求
+1.[General] 通用首部
+    Request URL:请求地址
+    Request Method:请求方式
+    Status code:状态码
+    Remote Address:服务器的IP地址和端口号
+
+2.[Request Headers] (view source)
+GET /index.html HTTP/1.1 ->请求起始行 HTTP METHOD(请求方式)、请求地址，使用的HTTP传输协议的版本号
+
+->请求首部->客户端会把一些信息放在请求首部中传递给服务器端，服务器端就可以在请求首部中获取到相关的内容（客户端设置 服务器端就获取）
+Host: 10.16.23.81:8088
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Upgrade-Insecure-Requests: 1
+
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.
+
+
+3.[Response Headers] (view source)
+->响应起始行：HTTP版本号,响应的状态码，状态码的说明
+HTTP/1.1 200 OK
+->响应首部：服务器端传递给客户端的一些信息可以放在响应首部中，客户端可以在响应首部中获取到服务器的相关信息（服务器设置 客户端获取）
+content-type: text/html;charset=utf-8; ->响应内容的格式和编码
+Date: Wed, 07 Sep 2016 02:47:36 GMT 服务器当前本次响应的时间(服务器时间格林尼治时间)
+Connection: keep-alive
+Transfer-Encoding: chunked
+
+[Response]响应主体  服务器传递给客户端的数据内容都在响应主体中，客户端可以在响应的主体中获取到这些内容(服务器端设置 客户端获取)
+
+[Request Payload]请求主体  客户端传递给服务器端的数据内容可以放在请求主体中传递给服务器，服务器可以在请求主体中获取到传递进来的内容
+
+客户端传递给服务器端数据
+->请求URL后面问号传参的方式传递给服务器 /getList?name=zhufeng&age=8
+->设置请求的首部(设置请求头信息)
+->设置请求主体,把传递给服务器的内容放在请求主体中传递给服务器
+
+服务器端传递给客户端数据
+->设置响应头信息
+->设置响应主体内容
+
+

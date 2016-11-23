@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/nav.css"/>
+</head>
+<body>
+<div class="box">
+    <img src="img/9317d3c4-c87e-4288-85a8-9cafced2646f.jpg.jpg"/>
+
+    <div class="navBg"></div>
+    <ul class="nav" id="nav">
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">手机 平板 电话卡</a>
+
+            <div class="inner">手机 平板 电话卡</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">2</a>
+
+            <div class="inner">2</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">3</a>
+
+            <div class="inner">3</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">4</a>
+
+            <div class="inner">4</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">5</a>
+
+            <div class="inner">5</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">6</a>
+
+            <div class="inner">6</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">7</a>
+
+            <div class="inner">7</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">8</a>
+
+            <div class="inner">8</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">9</a>
+
+            <div class="inner">9</div>
+        </li>
+        <li>
+            <a href="http://www.mi.com/buyphone/" target="_blank">10</a>
+
+            <div class="inner">10</div>
+        </li>
+    </ul>
+</div>
+
+
+<script charset="utf-8" type="text/javascript" src="js/nav.js"></script>
+</body>
+</html>

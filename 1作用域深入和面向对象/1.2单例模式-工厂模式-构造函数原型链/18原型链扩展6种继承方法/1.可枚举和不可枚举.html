@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:"丁宁",age:28};
+    for(var key in obj){
+        //->for in 循环在遍历的时候,默认的话可以把自己私有的和在它所属类原型上扩展的属性和方法都可以遍历到,但是一般情况下,我们遍历一个对象只需要遍历私有的即可,我们可以使用以下判断进行处理:
+        /*
+         propertyIsEnumerable()是用来检测属性是否属于某个对象的,如果检测到了,返回true,否则返回false.
+         1.这个属性必须属于实例的,并且不属于原型.
+         2.这个属性必须是可枚举的,也就是自定义的属性,可以通过for..in循环出来的.
+         只要符合上面两个要求,就会返回true;
+         */
+        if(obj.propertyIsEnumerable(key)){
+            console.log(key);
+        }
+        if(obj.hasOwnProperty(key)){
+            console.log(key);
+        }
+        //console.log(key+":"+obj[key]);
+    }
+</script>
+</body>
+</html>

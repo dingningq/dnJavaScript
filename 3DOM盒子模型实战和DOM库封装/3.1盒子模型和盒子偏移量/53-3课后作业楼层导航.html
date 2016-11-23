@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div id="content">
+        <div class="banner">
+            <img src="img/0.png" alt="" height="789"/>
+            <img src="img/00.png" alt="" height="749"/>
+        </div>
+        <div id="lazy1"><img src="img/1.png" alt="" height="772"/></div>
+        <div id="lazy2"><img src="img/2.png" alt="" height="752"/></div>
+        <div id="lazy3"><img src="img/3.png" alt="" height="606"/></div>
+        <div id="lazy4"><img src="img/4.png" alt="" height="603"/></div>
+        <div id="lazy5"><img src="img/5.png" alt="" height="754"/></div>
+        <div id="lazy6"><img src="img/6.png" alt="" height="609"/></div>
+        <div id="lazy7"><img src="img/7.png" alt="" height="607"/></div>
+        <div id="lazy8"><img src="img/8.png" alt="" height="606"/></div>
+        <div id="lazy9"><img src="img/9.png" alt="" height="747"/></div>
+        <div id="lazy10"><img src="img/10.png" alt="" height="608"/></div>
+        <div id="lazy11"><img src="img/11.png" alt="" height="604"/></div>
+        <div id="lazy12"><img src="img/12.png" alt="" height="608"/></div>
+        <div id="di"><img src="img/di.png" alt=""/></div>
+    </div>
+
+
+
+<div id="elevator" class="elevator" style="z-index: 5; position: fixed; left: 131px; top: 254px; display: none;">
+    <ul>
+        <li class="handler" data-idx="1">
+            <a href="javascript:;">1F</a>
+            <a href="javascript:;" class="etitle">服饰</a>
+        </li>
+        <li class="handler" data-idx="2">
+            <a href="javascript:;">2F</a>
+            <a href="javascript:;" class="etitle">美妆</a>
+        </li>
+        <li class="handler" data-idx="3">
+            <a href="javascript:;">3F</a>
+            <a href="javascript:;" class="etitle">手机</a>
+        </li>
+        <li class="handler" data-idx="4">
+            <a href="javascript:;">4F</a>
+            <a href="javascript:;" class="etitle">家电</a>
+        </li>
+        <li class="handler" data-idx="5">
+            <a href="javascript:;">5F</a>
+            <a href="javascript:;" class="etitle">数码</a
+        </li>
+        <li class="handler" data-idx="6">
+            <a href="javascript:;">6F</a>
+            <a href="javascript:;" class="etitle">运动</a>
+        </li>
+        <li class="handler" data-idx="7">
+            <a href="javascript:;">7F</a>
+            <a href="javascript:;" class="etitle">居家</a>
+        </li>
+        <li class="handler" data-idx="8">
+            <a href="javascript:;">8F</a>
+            <a href="javascript:;" class="etitle">母婴</a>
+        </li>
+        <li class="handler" data-idx="9">
+            <a href="javascript:;">9F</a>
+            <a href="javascript:;" class="etitle">食品</a>
+        </li>
+        <li class="handler" data-idx="10">
+            <a href="javascript:;">10F</a>
+            <a href="javascript:;" class="etitle">图书</a>
+        </li>
+        <li class="handler" data-idx="11">
+            <a href="javascript:;">11F</a>
+            <a href="javascript:;" class="etitle">车品</a>
+        </li>
+        <li class="handler" data-idx="12">
+            <a href="javascript:;">12F</a>
+            <a href="javascript:;" class="etitle">服务</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="css/jquery-1.7.2.min.js"></script>
+<script>
+$(function(){
+    var handle1=$('#lazy1').offset().top;//第一层距body的偏移量
+    var floorNum=$("#elevator ul").children().length //楼层个数
+    var winH=$(window).height();  //显示屏高度
+    var floorAry=[];
+
+    for(var i=1;i<floorNum+1;i++){
+        var abc=$("#lazy"+i);
+        floorAry.push(abc.offset().top); //循环把每层的偏移量都放在数据中
+    }
+    //console.log(floorAry);
+    $(window).scroll(function(){
+        var curTop=$(window).scrollTop();  //获取当前的滚动条卷去的值
+
+        if(curTop>handle1-winH){   //滚动条卷去的值 > 第一层距body的偏移量 减去 显示屏的高度
+            $("#elevator").show(); //当第一层进入浏览器显示屏后，显示这个楼层块
+        }else{
+            $("#elevator").hide();
+        }
+        if(curTop<=handle1){ //如果卷去值小于第一层的偏移量 让第一层加属性current
+            $(".handler").removeClass("current");
+            $(".handler[data-idx='1']").addClass("current");
+        }else{//如果卷去的值 大于第一层的偏移量，那么就判断他和值已经到了第几层
+            changeFloor(getFloor(curTop));
+        }
+
+    });
+
+    /*function getFloor(scrTop){
+        if(scrTop<=handle1){
+            return 1;
+        }else if(scrTop>floorAry[floorNum-1]){
+            return floorNum;
+
+        }else{
+            for(k=0;k<floorNum;k++){
+                if(scrTop>floorAry[k]&&scrTop<floorAry[k+1]){
+                    return k+1;
+                }
+            }
+        }
+
+    }*/
+    function getFloor(scrTop){  //scrTop 传的是当前滚动条 卷去的值
+        for(var i=0;i<floorNum;i++){
+            if(scrTop>=(floorAry[i]-winH)&&scrTop<=floorAry[i]){  //设置一个临界点 滚动值大于等于（ 开始值是每层的偏移量减去 屏幕高） && 小于等于 每层偏移的最大值
+                return i+1; //返回一个数值
+            }
+        }
+    }
+    function changeFloor(layNum){  //把上面getFloor返回的层值 传过来 给这层值 加上 current样式
+        $(".handler").removeClass("current");
+        $(".handler[data-idx='"+layNum+"']").addClass("current");
+    }
+    $("#elevator li").each(function(i){   //遍历每个li 给加点击事件  传索引值
+        $(this).click(function(){
+            goToFloor(i+1);
+        })
+    })
+    function goToFloor(thiz){   //根据加面点击的层数，加样式
+        $(".handler").removeClass("current");
+        $(".handler[data-idx='"+thiz+"']").addClass("current");
+        var pos=$('#lazy'+thiz).offset().top;//获取该点到头的距离
+        $("html,body").animate({
+            scrollTop:pos    //给html,body设置卷去的值
+        },800);
+    }
+
+})
+</script>
+</html>

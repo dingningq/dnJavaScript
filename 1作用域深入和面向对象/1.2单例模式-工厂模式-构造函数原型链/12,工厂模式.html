@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var jsPerson1 = {
+        name: "丁宁",
+        age: 28,
+        writeJs: function () {
+            console.log("my name is" + this.name + ",i can write js 啦!");
+        }
+    }
+    jsPerson1.writeJs();
+
+    //单例模式虽然解决了分组的作用,但是不能实现批量的生产,属于手工作业模式->"工厂模式"
+
+    //"工厂模式"指的是把实现同一件事情的相同代码放到一个函数中,以后如果在想实现这个功能,不需要从新的编写这些代码了,只需要执行当前的函数即可-->"函数的封装"-->"低耦合高内聚" :减少页面中的冗余代码,提高代码的重复利用率
+    function createJsPerson(name, age) {
+        var obj = {};
+        obj.name = name;
+        obj.age = age;
+        obj.writeJs = function () {
+            console.log("my name is" + this.name + ",i can write js 啦!");
+        }
+        return obj;
+    }
+    var p1 = createJsPerson("郑超", 45);
+    p1.writeJs();
+    var p2 = createJsPerson("小波", 45);
+    p2.writeJs();
+
+    //js是一门轻量级的脚本"编程语言"(HTML+CSS不属于编程语言,属于标记语言)
+    //.net c# php java c c++ vb vf object-c...
+    //所有的编程语言都是面向对象开发的->类的继承,封装,多态
+
+    //封装:把实现同一个功能的相同代码放到一个函数中,以后在用到这个功能,直接调用即可 -> 作用:低耦合高内聚(减少页面的冗余代码,提高代码的重复利用率)
+    //继承:子类继承父类中的属性和方法
+    //多态:当前方法的多种形态 ->后台语言中:多态包含重载和重写
+
+    // public void sum(int num1,int num2){
+
+    // }
+    // public void sum(String num1,int num2){
+
+    // }
+    sum("1") //因为传进来的是字符串 所以会首选 第二个sum方法
+    sum(1, 2)//因为有两个整形的参数 所以会首选 第一个sum方法
+    //这就是后台的 重载
+
+    //以下是javascript的重载demo
+    function sum(num1, num2) {
+
+    }
+    function sum(num1) {
+
+    }
+    sum(1);
+    sum(1, 2); //js中的预解释 遇到同名方法,属性,后面的会覆盖前面的,没有重载
+
+    //JS中不存在重载,方法名一样的话,后面的会把前面的覆盖掉,最后只保留一个
+    //js中有一个操作类似重载但是不是重载:我们可以根据传递参数的不一样,实现不同的功能
+
+    function sum(num) {
+        if (typeof num === "undefined") {
+            return 0;
+        }
+        return num;
+    }
+    //重写:子类重写父类的方法
+
+
+</script>
+</body>
+</html>

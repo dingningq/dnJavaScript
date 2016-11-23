@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .bg {
+            background: red;
+        }
+
+        .border {
+            border: 5px solid #0000cc
+        }
+
+        .position {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box bg2 border" id="box">
+
+</div>
+<script>
+    //addClass:增加样式类名
+    //removeClass:删除样式类名
+    //hasClass:判断是否存在某一个样式类名
+
+    var box = document.getElementById("box");
+
+    //->addClass:给元素增加样式类名
+    function addClass(curEle, className) {
+        //->为了防止className传递进来的值 包含多个样式类名，我们把传递进来的字符串按照一到多个空格拆分成数组中的每一项
+        var ary = className.split(/ +/g);
+
+        //->循环数组，一项项的进行验证增加即可
+        for (var i = 0, len = ary.length; i < len; i++) {
+            var curName = ary[i];
+            if (!hasClass(curEle, curName)) {
+                curEle.className += " " + curName;
+            }
+        }
+
+
+    }
+    addClass(box, "position");
+    addClass(box, "position   bg");
+
+    //->removeClass:给元素移除样式类名
+    function removeClass(curEle, className) {
+        var ary = className.split(/ +/g);
+        for (var i = 0, len = ary.length; i < len; i++) {
+            var curName = ary[i];
+            if (hasClass(curEle, curName)) {
+                var reg = new RegExp("(^| +)" + curName + "( +|$)");
+                curEle.className = curEle.className.replace(reg, " ");
+            }
+
+        }
+    }
+    removeClass(box,"border  position");
+
+
+    //->hasClass：验证当前元素中是否包含className这个样式类名
+    function hasClass(curEle, className) {
+        //curEle.className="box bg2 border"
+        var reg = new RegExp("(^| +)" + className + "( +|$)");
+        return reg.test(curEle.className);
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str = "20151213";
+    var ary = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+    str = str.replace(/\d/g, function () {
+        //console.log(arguments);//["2", "2", 0, "20151213"]
+        //var num=arguments[0]
+        //var str=ary[num];
+        //return str;
+        //简化一下 就是
+        return ary[arguments[0]];
+    })
+    console.log(str);
+</script>
+</body>
+</html>

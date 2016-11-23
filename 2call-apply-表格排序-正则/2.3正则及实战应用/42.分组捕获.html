@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //正则分组:
+    //1.改变优先级
+    //2.分组引用
+    //\2代表和第二个分组出现一模一样的内容:
+    //\1代表和第一个分组出现一模一样的内容;
+    //一模一样:和对应的分组中的内容的值都要一样
+   //var reg=/^(\w)\1(\w)\2(\w)\3$/
+    //console.log(reg.test("zzffss")); //->true
+
+
+    //3.分组捕获->正则在捕获的时候,不仅仅把大正则匹配的内容捕获到,而且还可以把小分组匹配的内容捕获到
+    //(?:)在分组中 ?:的意思是只匹配不捕获
+
+    var reg = /^(\d{2})(\d{4})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(\d|X)$/;
+    var str="110226198811104767";
+    console.log(reg.exec(str));
+    //ary=["110226198811104767", "11", "0226", "1988", "11", "10", "6", "7", index: 0, input: "110226198811104767"]
+    //ary[0]->大正则匹配的内容
+    //ary[1]->第一个分组捕获的内容 ->11
+    //ary[2]->第二个分组捕获的内容 ->0226
+    //...
+    //console.log(str.match(reg));//->和exec获取的结果是一样的
+
+    var reg=/zhufeng(\d+)/g;
+    var str="zhufeng12345zhufeng345zhufeng4566";
+    console.log(reg.exec(str));//["zhufeng12345", "12345"...]
+    console.log(reg.exec(str));//["zhufeng345", "345"...]
+    console.log(reg.exec(str));//["zhufeng4566", "4566"...]
+
+    //而match只能捕获大正则匹配的内容
+    console.log(str.match(reg));//["zhufeng12345", "zhufeng345", "zhufeng4566"]
+
+</script>
+</body>
+</html>

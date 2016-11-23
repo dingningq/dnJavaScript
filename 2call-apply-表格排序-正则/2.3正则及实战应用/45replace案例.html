@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //=============1.将小写的数字替换成大写的中文数字
+    //    var str="全日制第八期学费:9800";//玖捌零零
+    //    var ary=["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+    //    var reg=/\d/g;
+    //    str = str.replace(reg, function () {
+    //
+    //        /*
+    //        * 第一次执行:大正则捕获的是9,返回的是ary[9]-->"玖"
+    //        * 第二次执行:大正则捕获的是8,返回的是ary[8]-->"捌"
+    //        * */
+    //        return ary[arguments[0]];
+    //    });
+    //    console.log(str);
+
+    //===========2.获取一个字符串中出现次数最多的字符
+    //var str = "zhuuuuufengpeixunyangzzzzfangqihang";
+    //1)获取每一个字符出现的次数
+    //    var obj = {};
+    //    str.replace(/[a-z]/gi, function () {
+    //        var val = arguments[0];
+    //        obj[val] >= 1 ? obj[val] += 1 : obj[val] = 1;
+    //        /*if (obj[val] >= 1) {
+    //         obj[val] += 1;
+    //         } else {
+    //         obj[val] = 1;
+    //         }*/
+    //    });
+    //    //2)获取最多出现的次数
+    //    var maxNum = 0;
+    //    for (var key in obj) {
+    //        obj[key] > maxNum ? maxNum = obj[key] : null;
+    //    }
+    //
+    //    //3)把所有符合出现maxNum次数的都获取到
+    //    var ary = [];
+    //    for (var key in obj) {
+    //        obj[key] === maxNum ? ary.push(key) : null;
+    //    }
+    //
+    //    console.log("整个字符串中出现最多的字符是:" + ary.toString() + "出现了" + maxNum + "次");
+
+    //===========3.模板引擎实现的初步原理
+    //    var str="my name is {0},my age is {1},i come from{2},i love {3}~~";
+    //    var ary=["郑宝","2","北京","妈妈"];
+    //    str=str.replace(/{(\d+)}/g,function(){
+    //        //return ary[arguments[1]];
+    //        return ary[RegExp.$1]; //在ie下不兼容
+    //    })
+    //    console.log(str);
+
+    //思考题:
+    //1."2016-7-5 14:51:00"-->"2016年07月05日 14时51分0妙"
+    //2.把一个字符串中所有单词的首字母大写"zhu feng pei xun"->"Zhu Feng Pei Xun";
+
+    //=======4.需求:queryURLParameter
+    var str = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100000&cid=1467086&app=1.0";
+    //->把URL中的参数都获取到,并且保存成如下格式?
+    //  var obj={
+    //      mid:"100000",cid:"1467086",app:"1.0"
+    // }
+
+    //    var reg=/([^?=&]+)=([^?=&]+)/g;
+    //    var obj={};
+    //    str.replace(reg,function(){
+    //        obj[arguments[1]]=arguments[2];
+    //    });
+    //    var obj={};
+    //    var res=reg.exec(str);
+    //    while(res){
+    //        obj[res[1]]=res[2];
+    //        res=reg.exec(str);
+    //    }
+    //console.log(obj);
+
+    function queryURLParameter(str) {
+        var reg = /([^?=&]+)=([^?=&]+)/g;
+        var obj = {};
+        str.replace(reg, function () {
+            obj[arguments[1]] = arguments[2];
+        });
+        console.log(obj);
+    }
+    queryURLParameter(str);
+</script>
+</body>
+</html>

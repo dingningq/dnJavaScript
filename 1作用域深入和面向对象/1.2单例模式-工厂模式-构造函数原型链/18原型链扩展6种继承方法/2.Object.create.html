@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //　Object.create(proto [, propertiesObject ]) 创建一个新的对象,但是还要把proObj作为这个对象的原型
+
+    var obj={getX:function(){console.log(2)}};
+    function object(o){
+        function Fn(){
+
+        }
+        Fn.prototype=o;
+        return new Fn;
+    }
+    var newObj=object(obj);
+    //newObj.getX();
+
+    function Sum(){
+
+    }
+    Sum.prototype=Object(obj);
+   var newSum=new Sum;
+    console.log(newSum);
+
+
+    //    var obj={getX:function(){}};
+    //    var obj2=Object.create(obj);
+    //
+    //    //->obj2
+    //    //__proto__
+    //    //getX:function()....
+    //    //__proto__:Object.prototype
+    //    obj2.getX();
+    //    obj.getY=function(){
+    //        console.log(2);
+    //    }
+    //    obj2.getY();
+
+    //    var obj = {
+    //        constructor: Fn,
+    //        getX: function () {
+    //
+    //        }
+    //    };//->obj=xxxfff000
+    //    function Fn() {
+    //
+    //    }
+    //    var obj2 = {};
+    //    for (var key in obj) {
+    //        if (obj.hasOwnProperty(key)) {
+    //            obj2[key] = obj[key];
+    //        }
+    //
+    //    }
+    //    Fn.prototype = obj;//->Fn.prototype=xxxfff000
+    //    Fn.prototype.sum = function () {
+    //    }
+    //    var f = new Fn;
+
+
+</script>
+</body>
+</html>

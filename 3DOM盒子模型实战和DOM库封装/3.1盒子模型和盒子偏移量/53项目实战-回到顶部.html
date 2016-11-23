@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 500%;
+            background: #11c900;
+            /*css3背景颜色渐变*/
+            background: -webkit-linear-gradient(top, #11c900, lightblue, lightgoldenrodyellow, lightgreen, lightcyan, lightgray, lightpink, lightsalmon, lightseagreen);
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+
+        }
+
+        a:hover, a:active, a:target, a:visited {
+            text-decoration: none;
+            color: #000;
+
+        }
+
+        #goLink {
+            display: block; /*可以注释掉，加了position:自己就变成了块状元素*/
+            position: fixed;
+            bottom: 150px;
+            right: 50px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: red;
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+
+        #goLink:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        #target {
+            margin:1000px auto;
+            height: 50px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+<!--
+    A标签本身是跳转页面的，把跳转的地址写在href这个属性中，不写值是话是刷新本面面
+    1)不写值的话是刷新本页面
+    2)写的如果是#target，是锚点定位，定位到当前页面ID为target这个位置
+    3)"javascript:;",这样写是取消A标签默认跳转的行为
+-->
+<!--<a href="#target" id="goLink">Go</a>-->
+<a href="javascript:;" id="goLink" style="display: none">Go</a>
+
+<!--<div id="target"></div>-->
+<script>
+    //->开始GO按钮是不显示的，只有当浏览器卷去的高度超过一屏幕的高度的时候在显示，反之隐藏->只要浏览器的滚动条在滚动，我们就需要判断GO显示还是隐藏
+
+    var goLink=document.getElementById("goLink");
+    //->回到顶部
+    //总时间(duration):500ms
+    //频率(interval):多长时间走一步 10ms
+    //总距离(target)：当前的位置(当前的scrollTop)-目标位置(0)
+    //步长(step):每一次走的距离 target/duration->每1ms走的距离 * interval->每一次走的距离
+
+    window.onscroll=move;
+    goLink.onclick= function () {
+        //->当点击的时候让当前的GO消失
+        this.style.display="none";
+        //->光这样还不行：我们往回走的时候又把window.onscroll行为触发了，让Go又显示了->我们需要在点击后，把window.onscroll绑定的事件取消掉
+        window.onscroll=null;
+
+        //->当点击GO的时候，首先把每一步要走的步长计算出来
+        var duration=500,interval=10,target=document.documentElement.scrollTop||document.body.scrollTop;
+        var step=(target/duration)*interval;
+
+        //->计算完成步长后，让当前的页面每隔interval这么长的时间走一步：在原来的scrollTop的基础上减去步长
+        var timer=window.setInterval(function(){
+            var curTop=document.documentElement.scrollTop||document.body.scrollTop;
+            if(curTop===0){
+                window.clearInterval(timer);
+                window.onscroll=move;
+                return;
+            }
+            curTop-=step;
+            document.documentElement.scrollTop=curTop;
+            document.body.scrollTop=curTop;
+        },interval)
+    }
+
+    function move(){ //->window.onscroll不管怎么操作，只要滚动条动了就会触发这个行为
+        var curTop=document.documentElement.scrollTop||document.body.scrollTop;//获取当前卷去的高度
+        var curHeight=document.documentElement.clientHeight||document.body.clientHeight
+        goLink.style.display=curTop>curHeight?"block":"none";
+
+    };
+
+</script>
+</body>
+</html>

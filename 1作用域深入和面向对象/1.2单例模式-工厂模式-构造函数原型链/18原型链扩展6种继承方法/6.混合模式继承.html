@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //->混合模式继承:原型继承+call继承
+    function A(){
+        this.x=100;
+    }
+    A.prototype.getX=function(){
+        console.log(this.x);
+    };
+    function B(){
+        //this->n
+        A.call(this);  //把父类的私有的给子类所有私有属性 n.x=100
+    }
+    B.prototype=new A; //->B.prototype:原型继承就是把父类私有的和公有的都变成子类公有的  即有x也有getX
+    B.prototype.constructor=B;
+    var n=new B;
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .boxList {
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .list {
+            height: 30px;
+        }
+
+        .list li {
+            float: left;
+            line-height: 30px;
+            padding: 10px;
+            list-style: none;
+        }
+
+        .list li.on {
+            background-color: #cccccc;
+        }
+
+        .box {
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px solid red;
+        }
+
+        .box div {
+            display: none;
+        }
+
+        .box div.on {
+            display: block
+        }
+
+    </style>
+</head>
+<body>
+<div class="boxList">
+    <ul class="list" id="list">
+        <li class="on">11111</li>
+        <li>22222</li>
+        <li>33333</li>
+    </ul>
+    <div style="clear: both;"></div>
+    <div class="box" id="box">
+        <div class="on">内容一</div>
+        <div>内容二</div>
+        <div>内容三</div>
+    </div>
+</div>
+
+</body>
+<script>
+    function G(n) {
+        return document.getElementById(n);
+    }
+
+    var oList = G("list");
+    var oDiv = G("box");
+    var oLis = oList.getElementsByTagName("li");
+    var oDivs = oDiv.getElementsByTagName("div");
+
+    //第一种方法
+    /*for(var i=0; i<oLis.length;i++){
+     oLis[i].onclick=(function(i){
+     return function(){
+     tabChange(i);
+     }
+     })(i)
+     }*/
+    //当点击时,会形成一个自执行函数作用域, 首先形参赋值, i=0; 返回一个内存空间,xxxfff000, 然后让 xxxfff000(0)执行,在形成一个私有作用域, 传进来多少个值,形成多少个作用域,每个作用域执行完成,都会立即销毁
+    //闭包因为有外边的DOM元素迁着 所以自执行函数不销毁
+
+
+    //第二种方法
+    for (var i = 0; i < oLis.length; i++) {
+        ~(function (i) {
+            oLis[i].onclick = function () {
+                tabChange(i);
+            }
+        })(i)
+    }
+
+    //参考一下6,作用域销毁2的图片
+    //首先 var oLis是对象数据类型的 所以它有个堆内存 xxxfff000
+    //里面包含许多对象的属性名和属性值 其中包括onclick属性名
+    //自执行函数执行->形成一个私有作用域->里面先形参赋值,然后oLis[i].onclick=xxxfff111
+    //这时全局作用域下的oLis的onclick的属性值也是 xxxfff111
+    //所以自执行函数 不销毁
+
+
+    function tabChange(index) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        oLis[index].className = "on";
+        oDivs[index].className = "on";
+    }
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            /*position: absolute;
+            top: 0;
+            left: 0;*/
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+<script src="js/utils-duoxing.js"></script>
+<script>
+    var box = document.getElementById("box");
+    var curLeft = utils.css(box, "width");
+
+console.log(curLeft);
+    //    utils.setCss(box, "left", 100);
+    //    utils.setCss(box, "width", 200);
+    //    utils.setCss(box, "backgroundColor", "red");
+    //    utils.setCss(box, "opacity", 0.5);
+    //    utils.setCss(box, "float", "right");
+    //    utils.setCss(box, "borderTop", "10px solid #000");
+    //    utils.setCss(box, "margin", "10px 20px 30px 40px");
+    utils.css(box, {
+        width: 200,
+        background: "red",
+        opacity: 0.5,
+        float: "right",
+        borderTop: "10px solid #000",
+        padding: 10
+    });
+    utils.css(box,"borderBottom","10px solid #000");
+
+    //->JQuery中提供了这样的一个方法：css,这个方法既可以实现获取，也可以实现单独的设置，也可以实现批量的设置
+    //    $("#box").css("width");//->获取
+    //    $("#box").css("width",200);//->单独设置
+    //    $("#box").css({
+    //        width: 200,
+    //        height: 200
+    //    }) //->批量设置
+
+</script>
+</body>
+</html>

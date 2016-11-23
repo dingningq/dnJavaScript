@@ -1,0 +1,31 @@
+正则实战应用技巧：格式化时间字符串
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-02/481.html
+
+正则实战应用技巧：获取URL地址栏的参数
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-02/482.html
+
+一些你不知道的JavaScript Console调试命令
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-09/500.html
+
+使用EJS(模板引擎)动态绑定页面中的数据
+http://old.zhufengpeixun.cn/qianduanjishuziliao/javaScriptzhuanti/2016-07-31/542.html
+
+移动端横竖屏的检测
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-08-14/581.html
+
+LESS学习:了解LESS和编译LESS
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-22/527.html
+
+LESS学习:LESS的基础语法
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-22/528.html
+
+一篇文章，让你快速了解Hybrid App开发模式
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/511.html
+
+检测浏览器的类型(PC端还是移动端)
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/510.html
+
+
+移动端基础知识第一发：常用的META标签
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-06-29/457.html
+http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-02/480.html

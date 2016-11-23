@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">
+    <p name="n1"></p>
+
+    <p name="n1"></p>
+
+    <p name="n2"></p>
+
+    <p name="n3"></p>
+
+    <p name="n1"></p>
+</div>
+<script>
+    var oDiv = document.getElementById("div1");
+    /*var list = oDiv.getElementsByName("n1");
+    console.log(list);//->oDiv.getElementsByName is not a function*/
+
+
+    //原型链模式中,只有document下有getElementsByName属性名,所以只有document.getElementsByName,获取到的某个元素oDiv原型上没有这个属性
+    var list = document.getElementsByName("n1");
+    console.log(list);
+</script>
+</body>
+</html>

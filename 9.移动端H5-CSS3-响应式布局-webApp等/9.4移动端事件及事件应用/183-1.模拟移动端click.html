@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link charset="utf-8" rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: #eee;
+
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: lightblue;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            -webkit-transition: all 1s linear 0s;
+            transition: all 1s linear 0s;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script src="js/fastclick.min.js"></script>
+<script>
+    //    function on(curEle,type,fn){
+    //        curEle.addEventListener(type,fn,false);
+    //    }
+        var oBox = document.querySelector('.box');
+    //    //->使用touch事件模型实现点击操作（单击&&双击）
+    //    on(oBox,'touchstart',function(ev){
+    //        //->ev:TouchEvent=>type,target,preventDefault(returnValue)阻止默认行为,stopPropagation(cancelBubble)阻止事件冒泡,changedTouches,touches
+    //        //->changedTouches和touches都是手指信息的集合(TouchList),touches获取到值的必备条件只有手指还在屏幕上才可以获取，所以在touchend事件中如果想获取离开的瞬间坐标，只能使用changedTouches获取
+    //        //ev.touches[0].clientX;
+    //        //console.log(ev);
+    //        var point=ev.touches[0];
+    //        this['strX']=point.clientX;
+    //        this['strY']=point.clientY;
+    //        this['isMove']=false;
+    //    });
+    //    on(oBox,'touchmove',function(ev){
+    //        var point=ev.touches[0];
+    //        var newX=point.clientX,
+    //                newY=point.clientY;
+    //        //->判断是否发生滑动，我们需要判断偏移的值是否在30px以内
+    //        if(Math.abs(newX-this['strX'])>30||Math.abs(newY-this['strY'])>30){
+    //            this['isMove']=true;
+    //        }
+    //
+    //    });
+    //    on(oBox,'touchend',function(ev){
+    //        if(this['isMove']==false){
+    //            //->点击
+    //            this.style.webkitTransitionDuration='1s';
+    //            this.style.webkitTransform='rotate(360deg)';
+    //            var delayTimer=window.setTimeout(function(){
+    //                this.style.webkitTransitionDuration='0s';
+    //                this.style.webkitTransform='rotate(0deg)';
+    //            }.bind(this),1000);
+    //        }else{
+    //            //->滑动
+    //            this.style.background='red';
+    //        }
+    //    });
+
+
+    FastClick.attach(document.body);
+    //- > 移动端采用click存在300ms的延迟
+    oBox.addEventListener('click', function () {
+        this.style.webkitTransitionDuration = '1s';
+        this.style.webkitTransform = 'rotate(360deg)';
+        var delayTimer = window.setTimeout(function () {
+            this.style.webkitTransitionDuration = '0s';
+            this.style.webkitTransform = 'rotate(0deg)';
+        }.bind(this), 1000);
+    }, false);
+
+
+</script>
+</body>
+</html>

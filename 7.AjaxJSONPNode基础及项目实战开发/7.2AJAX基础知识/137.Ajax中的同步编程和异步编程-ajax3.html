@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/ajax.js" charset="utf-8"></script>
+<script>
+    //->同步(sync)和异步(ASYNC)编程
+
+    //->JS是属于单线程的，我们最好使用异步编程
+    //->定时器都是异步编程的
+    //->事件绑定都是异步编程的
+    //->回调函数也可以理解为异步编程
+    //->在Ajax中可以使用异步编程
+
+
+    //    var count=0;
+    //    window.setTimeout(function(){
+    //        count++;
+    //        console.log(count); //->第二次输出 1000ms后输出1
+    //    },0); //->我们定时器的时间设置为0也不是立马执行，而是需要等待一段时间：谷歌为5~6 IE为10~13
+    //    console.log(count); //->第一次输出 0
+
+
+    //        var count=0;
+    //        window.setTimeout(function(){
+    //            count++;
+    //            console.log(count); //->没有输出，我们定时器设定1000ms后执行，不一定到达时间就执行，如果当前浏览器的线程被占用(现在是被死循环占用了)，定时器就要一直等着
+    //        },0);
+    //        console.log(count); //->第一次输出 0
+    //        while(1){
+    //
+    //        }
+
+    //    var count=0;
+    //    window.setTimeout(function(){
+    //        console.log("A");
+    //    },10);
+    //    window.setTimeout(function(){
+    //        console.log("B");
+    //    },6);
+    //    var i=0;
+    //    while(i<1000000000){
+    //        i++;
+    //    }
+    //->多个定时器，如果执行完成循环都到达时间了，先执行时间短的这个定时器(这个和饭店的逻辑不太一样了)
+
+
+    //->Ajax中的同步：当Ajax任务开始的时候(xhr.send)，一直需要到 ready sate===4的时候任务才结束，些时才可以处理其它的事件
+
+    //->Ajax中的异步：当Ajax任务开始的时候(xhr.send),不需要等到ready sate===4,我们依然可以继续做其它的任务，并且只有当其它的任务完成后，我们在看是否到4,到达4的时候做一些相关的操作
+    //    var xhr=new XMLHttpRequest;
+    //    xhr.open("get","./package.json",false);
+    //    xhr.send(null); //->只有send之后Ajax的任务(向服务器发送请求的任务)才开始
+
+    //->绑定在open前表示已经监听到了从xhr变为open，所以可以输出 1，2，3，4，在open后就无法输出1
+    //    var xhr = new XMLHttpRequest;
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);
+    //    }
+    //    xhr.open("get", "./package.json", true);
+    //    xhr.send(null);
+
+
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open("get", "./package.json", true);
+    //        xhr.onreadystatechange = function () {
+    //            console.log(xhr.readyState); //->2.3.4
+    //            //console.log(xhr.response);
+    //        }
+    //        xhr.send(null);
+
+
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open("get", "./package.json", false);
+    //        xhr.onreadystatechange = function () {
+    //            console.log(xhr.readyState); //->4
+    //        }
+    //        xhr.send(null)
+
+
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open("get", "./package.json", true);
+    //        xhr.send(null);
+    //        xhr.onreadystatechange = function () {
+    //            console.log(xhr.readyState); //->2.3.4
+    //        }
+
+    //    var xhr = new XMLHttpRequest;
+    //    xhr.open("get", "./package.json", false);
+    //    xhr.send(null);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState); // 没有任何输出
+    //    }
+
+
+    //->获取服务器时间
+    //            var xhr = new XMLHttpRequest;
+    //            xhr.open("head", "./package.json", true);
+    //            xhr.onreadystatechange = function () {
+    //                if(xhr.readyState===2){
+    //                    //->xhr.getResponseHeader:获取服务器的响应头信息
+    //                    var timer=xhr.getResponseHeader("Date");
+    //                    console.log(new Date(timer));
+    //
+    //                }
+    //            };
+    //            xhr.send(null);
+
+    //->获取服务器时间
+    var xhr = new XMLHttpRequest;
+
+    xhr.open("head", "./package.json", true);
+    //->xhr.setRequestHeader设置请求头，要在OPEN之后设置
+    xhr.setRequestHeader("dingning","30");
+    xhr.timedout="1000";//->设置Ajax请求超时时间
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 2) {
+            //->xhr.getResponseHeader:获取服务器的响应头信息
+            var timer = xhr.getResponseHeader("Date");
+            console.log(new Date(timer));
+
+        }
+    };
+    xhr.send(null);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        .banner {
+            margin: 1000px auto;
+            width: 350px;
+            height: 200px;
+            border: 1px solid green;
+            background: url("img/default.gif") no-repeat center center #e1e1e1; /*给当前的区域在加一个默认图占位，告诉用户此处的图片正在加载中*/
+        }
+
+        .banner img {
+            display: none; /*在开始的时候IMG的src属性没有地址，这样的话在IE浏览器中容器中会显示一张碎图，不美观，所以我们让其默认是隐藏的，当真实的图片加载完成后显示*/
+            width: 100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="banner" id="banner">
+    <img src="" alt="" trueImg="img/11.jpg"/>
+</div>
+<script src="js/utils.js"></script>
+<script>
+    var banner = document.getElementById("banner"),
+            imgFir = banner.getElementsByTagName("img")[0];
+    window.onscroll = function () {
+        if(banner.isLoad){//->已经加载过了
+            return;
+        }
+        var A = banner.offsetHeight + utils.offset(banner).top;//当前容器的底边框距离BODY的上偏移
+        var B = utils.win("clientHeight") + utils.win("scrollTop"); //当前浏览器的底边框距离BODY的上偏移
+        if (A < B) { //开始加载这张图片
+            //->当条件成立，我们加载真实的图片，第一次加载完成后，我们在让页面继续滚动的过程中，A<B一直成立，又从新的执行了下面的操作，导致了重复给一个容器中的图片进行加载
+            console.log("ok");
+            var oImg=new Image;
+            oImg.src=imgFir.getAttribute("trueImg");
+            oImg.onload=function(){
+
+                imgFir.src=this.src;
+                imgFir.style.display="block";
+                oImg=null;
+            }
+            banner.isLoad=true;//->设置一个自定义属性，告诉浏览器我已经把图片加载完了(不管是否正常加载，只要处理过一次以后都不在处理了);
+        }
+
+    }
+</script>
+</body>
+</html>
